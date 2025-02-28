@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="application.controllers.TutoController" spacing="10" alignment="CENTER">
+       <TextArea fx:id="textArea1" prefHeight="200" prefWidth="300"/>
+       <Button text="Create a chomeur" onAction="#handleSubmitButtonAction1"/>
+
+       <TextArea fx:id="textArea2" prefHeight="200" prefWidth="300"/>
+       <Button text="Create an attack" onAction="#handleSubmitButtonAction2"/>
+</VBox>

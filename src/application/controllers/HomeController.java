@@ -19,20 +19,12 @@ public class HomeController {
 
     @FXML
     public void initialize() {
-        try {
-            // Charger l'image de fond
-            Image image = new Image(getClass().getResourceAsStream("/images/background.jpeg"));
 
-            // Vérifier si l'image est bien chargée
-            if (image.isError()) {
-                System.out.println("Erreur de chargement de l'image !");
-            } else {
-                System.out.println("Image chargée avec succès !");
-                backgroundImage.setImage(image); // Appliquer l'image de fond à l'ImageView
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Charger l'image de fond
+        Image image = new Image(getClass().getResourceAsStream("/images/background.jpeg"));
+            
+        backgroundImage.setImage(image); // Appliquer l'image de fond à l'ImageView
+       
     }
     
     // Méthode pour aller vers Selection.fxml
@@ -51,6 +43,12 @@ public class HomeController {
     @FXML
     private void handleGame(ActionEvent event) {
         navigateTo(event, "/views/Game.fxml", "Game");
+    }
+    
+    // Méthode pour aller vers Tuto.fxml
+    @FXML
+    private void handleTuto(ActionEvent event) {
+        navigateTo(event, "/views/Tuto.fxml", "Tuto");
     }
 
     // Méthode utilitaire pour naviguer vers un autre FXML

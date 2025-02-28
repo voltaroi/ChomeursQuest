@@ -20,7 +20,7 @@ public class Main extends Application {
         
         // Définir la scène sur le stage et afficher
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Exemple avec VBox");
+        primaryStage.setTitle("Chomeur's Quest");
         primaryStage.show();
     }
 
