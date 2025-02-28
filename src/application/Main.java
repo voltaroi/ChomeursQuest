@@ -1,14 +1,11 @@
 package application;
 
-<<<<<<< HEAD
-=======
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
->>>>>>> origin/interface
 public class Main extends Application {
 
     @Override
