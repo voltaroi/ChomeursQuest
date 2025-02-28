@@ -1,0 +1,5 @@
+name=test
+isAttackSpe = false
+att= 50
+type=poison
+effect=poison
