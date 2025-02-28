@@ -3,4 +3,5 @@ module ChomeursQuest {
 	requires javafx.fxml;
 	
 	opens application to javafx.graphics, javafx.fxml;
+	opens application.controllers to javafx.fxml;
 }
