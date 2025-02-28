@@ -12,4 +12,6 @@ spacing="10"
 	<Label fx:id="welcomeLabel" text="Welcome to chomeurs's quest!" />
     <Button text="Play" onAction="#handlePlay"/>
     <Button text="Options" onAction="#handleOption"/>
+    <Button text="game" onAction="#handleGame"/>
+    
 </VBox>

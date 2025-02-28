@@ -23,6 +23,12 @@ public class HomeController {
     private void handleOption(ActionEvent event) {
         navigateTo(event, "/views/Option.fxml", "Options");
     }
+    
+    // Méthode pour aller vers Game.fxml
+    @FXML
+    private void handleGame(ActionEvent event) {
+        navigateTo(event, "/views/Game.fxml", "Game");
+    }
 
     // Méthode utilitaire pour naviguer vers un autre FXML
     private void navigateTo(ActionEvent event, String fxmlPath, String title) {
