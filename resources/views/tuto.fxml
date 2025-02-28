@@ -10,4 +10,5 @@
 
        <TextArea fx:id="textArea2" prefHeight="200" prefWidth="300"/>
        <Button text="Create an attack" onAction="#handleSubmitButtonAction2"/>
+       <Button text="Retour" onAction="#handleBack"/>
 </VBox>

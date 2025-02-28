@@ -1,4 +1,4 @@
-name=tartampion
+name=Brigitte
 hp=12
 att=4
 attSpe=6
