@@ -1,31 +1,32 @@
 package application.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Node;
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
 
 public class SelectionController {
 
     @FXML
-    private void handleBack() {
+    private void handleBack(ActionEvent event) {
         try {
-            // Charger le fichier FXML de la page d'accueil (Home.fxml)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Home.fxml"));
-            VBox root = loader.load();
-            
-            // Créer une nouvelle scène avec le fichier Home.fxml
-            Scene scene = new Scene(root);
-            
-            // Récupérer la scène du stage actuel
-            Stage stage = (Stage) root.getScene().getWindow();
-            
-            // Mettre à jour la scène avec la page d'accueil
-            stage.setScene(scene);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Accueil");
             stage.show();
-        } catch (Exception e) {
+
+            System.out.println("Retour à l'accueil !");
+        } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("Erreur lors du retour à l'accueil.");
         }
     }
 }
