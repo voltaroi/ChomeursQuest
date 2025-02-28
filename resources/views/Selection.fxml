@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SelectionController" alignment="CENTER" spacing="10">
+    <Label text="Bienvenue sur la page de sélection" />
+    <Button text="Retour" onAction="#handleBack"/>
+</VBox>
