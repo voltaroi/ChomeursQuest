@@ -1,5 +1,6 @@
 package application.Game;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Player {
 	
 	public void addChomeur(String chomeur) {
 		Chomeur newChomeur = new Chomeur();
-		String path = "C:\\Users\\volta\\eclipse-workspace\\ChomeursQuest\\src\\assets\\chomeurs\\" + chomeur +".txt";
+		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "chomeurs", chomeur + ".txt").toString();
 		newChomeur.FromFile(path);
 		chomeurs.add(newChomeur);
 	}

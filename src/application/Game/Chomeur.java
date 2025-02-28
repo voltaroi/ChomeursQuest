@@ -3,6 +3,7 @@ package application.Game;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,7 +106,7 @@ public class Chomeur {
                         	nameAttack = parts[1];
                         	if(!nameAttack.equals("none")) {
                             	Attack newAttack = new Attack();
-                            	newAttack.FromFile("C:\\Users\\volta\\eclipse-workspace\\ChomeursQuest\\src\\assets\\attacks\\" + nameAttack +".txt");
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
                             	attacks.add(newAttack);
                         	}
                             break;
@@ -114,7 +115,7 @@ public class Chomeur {
                         	if(!nameAttack.equals("none")) {
                         		System.out.println(nameAttack);
                             	Attack newAttack = new Attack();
-                            	newAttack.FromFile("C:\\Users\\volta\\eclipse-workspace\\ChomeursQuest\\src\\assets\\attacks\\" + nameAttack +".txt");
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
                             	attacks.add(newAttack);
                         	}
                             break;
@@ -122,7 +123,7 @@ public class Chomeur {
                         	nameAttack = parts[1];
                         	if(!nameAttack.equals("none")) {
                             	Attack newAttack = new Attack();
-                            	newAttack.FromFile("C:\\Users\\volta\\eclipse-workspace\\ChomeursQuest\\src\\assets\\attacks\\" + nameAttack +".txt");
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
                             	attacks.add(newAttack);
                         	}
                             break;
@@ -130,7 +131,7 @@ public class Chomeur {
                         	nameAttack = parts[1];
                         	if(!nameAttack.equals("none")) {
                             	Attack newAttack = new Attack();
-                            	newAttack.FromFile("C:\\Users\\volta\\eclipse-workspace\\ChomeursQuest\\src\\assets\\attacks\\" + nameAttack +".txt");
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
                             	attacks.add(newAttack);
                         	}
                             break;
