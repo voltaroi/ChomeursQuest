@@ -10,26 +10,31 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" 
 	  fx:controller="application.controllers.SelectionController"
       alignment="CENTER" spacing="20">
-    
-    <Label text="Chomeurs :" />
-    <ComboBox fx:id="chomeurComboBox" prefWidth="300"/>
-    <Button text="display" onAction="#handleDescription"/>
-    <Label text="Item :"/>
-    <ComboBox fx:id="itemComboBox" prefWidth="300"/>
-    
-    <!--  attacks  -->
-    <Label text="Attacks :"/>
-    <ComboBox fx:id="attack1ComboBox" prefWidth="300"/>
-
-    <ComboBox fx:id="attack2ComboBox" prefWidth="300"/>
-
-    <ComboBox fx:id="attack3ComboBox" prefWidth="300"/>
-
-    <ComboBox fx:id="attack4ComboBox" prefWidth="300"/>
-    
-    <!-- Description -->
-    <Text fx:id="description" text="description : "/>
-
-    <Button text="+ add chomeur" onAction="#handleSubmit"/>
-    <Button text="Retour" onAction="#handleBack"/>
+    <HBox>
+    <VBox>
+	    <Label text="Chomeurs :" />
+	    <ComboBox fx:id="chomeurComboBox" prefWidth="300"/>
+	    <Button text="display" onAction="#handleDescription"/>
+	    <!-- Description -->
+	    <Text fx:id="description" text="description : "/>
+    </VBox>
+    <VBox>
+	    <Label text="Item :"/>
+	    <ComboBox fx:id="itemComboBox" prefWidth="300"/>
+	    
+	    <!--  attacks  -->
+	    <Label text="Attacks :"/>
+	    <ComboBox fx:id="attack1ComboBox" prefWidth="300"/>
+	
+	    <ComboBox fx:id="attack2ComboBox" prefWidth="300"/>
+	
+	    <ComboBox fx:id="attack3ComboBox" prefWidth="300"/>
+	
+	    <ComboBox fx:id="attack4ComboBox" prefWidth="300"/>
+    </VBox>
+    </HBox>
+    <HBox>
+	    <Button text="+ add chomeur" onAction="#handleSubmit"/>
+	    <Button text="Retour" onAction="#handleBack"/>
+    </HBox>
 </VBox>

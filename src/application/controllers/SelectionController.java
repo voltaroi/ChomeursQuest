@@ -93,7 +93,14 @@ public class SelectionController {
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;
             while ((ligne = reader.readLine()) != null) {
-            	descriptionChomeurSelected += ligne + System.lineSeparator();
+            	// Si la ligne contient "name", on la saute
+                if (ligne.contains("name")) {
+                	continue;
+                }
+            	if ( ligne.contains("speed") || ligne.contains("attack")) {
+            				descriptionChomeurSelected += System.lineSeparator();
+            			}
+            	descriptionChomeurSelected += ligne + " ";
             }
             description.setText(descriptionChomeurSelected);
         } catch (IOException e) {
