@@ -9,10 +9,12 @@ import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
-
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 
 
 
@@ -29,6 +31,8 @@ public class SelectionController {
     private ComboBox<String> attack3ComboBox;
     @FXML
     private ComboBox<String> attack4ComboBox;
+    @FXML
+    private Text description;
     
 
     // Chemin vers le dossier contenant les attaques
@@ -78,6 +82,45 @@ public class SelectionController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    
+    // gestion du buton description
+    @FXML
+    private void handleDescription() {
+    	String chomeur = chomeurComboBox.getValue(); 
+    	String cheminFichier = "src/assets/chomeurs/" + chomeur;
+    	String descriptionChomeurSelected = "";
+        try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
+            String ligne;
+            while ((ligne = reader.readLine()) != null) {
+            	descriptionChomeurSelected += ligne + System.lineSeparator();
+            }
+            description.setText(descriptionChomeurSelected);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier : " + e.getMessage());
+        }
+    }
+    
+    // gestion du buton add chomeur
+    @FXML
+    private void handleSubmit() {
+    	String chomeur = chomeurComboBox.getValue();
+    	String item = itemComboBox.getValue();
+        String attack1 = attack1ComboBox.getValue();
+        String attack2 = attack2ComboBox.getValue();
+        String attack3 = attack3ComboBox.getValue();
+        String attack4 = attack4ComboBox.getValue();
+
+        if (chomeur == null || item == null || attack1 == null || attack2 == null || attack3 == null || attack4 == null) {
+            showAlert("Erreur", "Veuillez sélectionner un chomeur, un objet et toutes les attaques.");
+        } else {
+            showAlert("chomeur sélected : " + chomeur  + "\n" ,
+            	"item selected : " + item  + "\n" +
+                "Attack 1 : " + attack1 + "\n" +
+                "Attack 2 : " + attack2 + "\n" +
+                "Attack 3 : " + attack3 + "\n" +
+                "Attack 4 : " + attack4);
+        }
     }
     
     @FXML

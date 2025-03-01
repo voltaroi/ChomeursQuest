@@ -2,8 +2,10 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.text.Text?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" 
 	  fx:controller="application.controllers.SelectionController"
@@ -11,7 +13,7 @@
     
     <Label text="Chomeurs :" />
     <ComboBox fx:id="chomeurComboBox" prefWidth="300"/>
-    
+    <Button text="display" onAction="#handleDescription"/>
     <Label text="Item :"/>
     <ComboBox fx:id="itemComboBox" prefWidth="300"/>
     
@@ -24,7 +26,10 @@
     <ComboBox fx:id="attack3ComboBox" prefWidth="300"/>
 
     <ComboBox fx:id="attack4ComboBox" prefWidth="300"/>
+    
+    <!-- Description -->
+    <Text fx:id="description" text="description : "/>
 
-    <Button text="+ add chomeur" onAction="#handleBack"/>
+    <Button text="+ add chomeur" onAction="#handleSubmit"/>
     <Button text="Retour" onAction="#handleBack"/>
 </VBox>

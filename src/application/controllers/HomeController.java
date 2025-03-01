@@ -61,8 +61,7 @@ public class HomeController {
             stage.setScene(new Scene(root));
             stage.setTitle(title);
             stage.show();
-
-            System.out.println("Navigation vers : " + fxmlPath);
+            
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement de " + fxmlPath);
