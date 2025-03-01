@@ -13,8 +13,10 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 
 
@@ -33,6 +35,8 @@ public class SelectionController {
     private ComboBox<String> attack4ComboBox;
     @FXML
     private Text description;
+    
+    private String team;
     
 
     // Chemin vers le dossier contenant les attaques
@@ -110,7 +114,7 @@ public class SelectionController {
     
     // gestion du buton add chomeur
     @FXML
-    private void handleSubmit() {
+    private void handleAdd() {
     	String chomeur = chomeurComboBox.getValue();
     	String item = itemComboBox.getValue();
         String attack1 = attack1ComboBox.getValue();
@@ -127,7 +131,40 @@ public class SelectionController {
                 "Attack 2 : " + attack2 + "\n" +
                 "Attack 3 : " + attack3 + "\n" +
                 "Attack 4 : " + attack4);
+            addChomeur("\n"+
+            chomeur + "\n" + 
+            item + "\n" + 
+            attack1 + "\n" +
+            attack2 + "\n" +
+            attack3 + "\n" +
+            attack4 + "\n");
         }
+    }
+    
+    private void addChomeur(String text) {
+	    team += text;
+    	
+	    // Définir le chemin du dossier cible
+	    String folderPath = "src/assets/team/";
+	    
+	    // Crée un fichier pour enregistrer le texte
+	    File file = new File(folderPath, "team.txt");
+	
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+	        // Sauvegarde le texte dans le fichier
+	        writer.write(team);
+	        writer.newLine();  // Ajoute une nouvelle ligne pour garantir la fin correcte du fichier
+	        showAlert("Succès", "Le texte a été sauvegardé avec succès dans " + "team.txt");
+	    } catch (IOException e) {
+	        // Gère les erreurs de sauvegarde du fichier
+	        showAlert("Erreur", "Erreur lors de la sauvegarde du fichier : " + e.getMessage());
+	    }
+    }
+    
+    @FXML
+    private void handleClear() {
+    	team = "";
+    	addChomeur("");
     }
     
     @FXML

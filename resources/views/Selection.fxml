@@ -34,7 +34,8 @@
     </VBox>
     </HBox>
     <HBox>
-	    <Button text="+ add chomeur" onAction="#handleSubmit"/>
+	    <Button text="+ add chomeur" onAction="#handleAdd"/>
+	    <Button text="clear team" onAction="#handleClear"/>
 	    <Button text="Retour" onAction="#handleBack"/>
     </HBox>
 </VBox>
