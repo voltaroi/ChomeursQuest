@@ -11,6 +11,7 @@ public class Chomeur {
 	
 	private String name;
 	private float hp;
+	private float hpMax;
 	private float att;
 	private float attSpe;
 	private float def;
@@ -31,6 +32,14 @@ public class Chomeur {
 	
 	public float getHp() {
 		return hp;
+	}
+	
+	public float getHpMax() {
+		return hpMax;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public void modifAtt(float add) {
@@ -78,6 +87,7 @@ public class Chomeur {
                             break;
                         case "hp":
                             hp = Float.parseFloat(parts[1]);
+                            hpMax = Float.parseFloat(parts[1]);
                             break;
                         case "att":
                             att = Float.parseFloat(parts[1]);
