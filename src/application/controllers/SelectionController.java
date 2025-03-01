@@ -94,10 +94,10 @@ public class SelectionController {
             String ligne;
             while ((ligne = reader.readLine()) != null) {
             	// Si la ligne contient "name", on la saute
-                if (ligne.contains("name")) {
+                if (ligne.contains("name") || ligne.contains("attack")) {
                 	continue;
                 }
-            	if ( ligne.contains("speed") || ligne.contains("attack")) {
+            	if ( ligne.contains("speed")) {
             				descriptionChomeurSelected += System.lineSeparator();
             			}
             	descriptionChomeurSelected += ligne + " ";
