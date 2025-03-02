@@ -38,6 +38,10 @@ public class Chomeur {
 		return hpMax;
 	}
 	
+	public List<Attack> getAllAttack() {
+		return attacks;
+	}
+	
 	public String getName() {
 		return name;
 	}

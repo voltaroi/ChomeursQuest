@@ -13,6 +13,10 @@
 		<StackPane fx:id="rootPane">
 				<Canvas fx:id="myCanvas" width="800" height="450"/>
 				<VBox fx:id="chomeur1" alignment="BOTTOM_LEFT" spacing="5"></VBox>
+				<VBox alignment="BOTTOM_RIGHT" spacing="5">
+					<HBox alignment="BOTTOM_RIGHT" spacing="5" fx:id="attackHBox1"></HBox>
+					<HBox alignment="BOTTOM_RIGHT" spacing="5" fx:id="attackHBox2"></HBox>
+				</VBox>
 				<VBox fx:id="chomeur2" alignment="TOP_RIGHT" spacing="5"></VBox>
 		</StackPane>
 		<VBox fx:id="info"></VBox>

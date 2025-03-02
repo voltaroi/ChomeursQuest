@@ -12,4 +12,3 @@ attackTest.txt
 attackTest.txt
 test1.txt
 attackTest.txt
-

@@ -1,4 +1,4 @@
-name=test
+name=attackTest
 isAttackSpe = false
 att= 50
 type=poison
