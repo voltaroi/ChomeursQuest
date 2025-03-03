@@ -38,8 +38,8 @@ public class GameController {
     @FXML
     private HBox attackHBox2;
     
-    private Player player1;
-    private Player player2;
+    private Player player1 = new Player();
+    private Player player2 = new Player();
     
     private boolean round = true;
     
@@ -54,25 +54,8 @@ public class GameController {
     	gc.setFill(Color.LIGHTBLUE);
         gc.fillRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
         
-    	player1 = new Player();
-    	player1.addChomeur("macron");
-    	for(Chomeur chomeur : player1.getChomeurs()) {
-        	addMessage(chomeur.getString());
-    	}
-    	
-    	initAttack(player1);
-    	
-    	List<Chomeur> chomeurs = player1.getChomeurs();
-    	initChomeur(chomeurs.get(0), chomeur1);
-    	
-    	player2 = new Player();
-    	player2.addChomeur("Brigitte");
-    	for(Chomeur chomeur : player2.getChomeurs()) {
-        	addMessage(chomeur.getString());
-    	}
-    	
-    	chomeurs = player2.getChomeurs();
-    	initChomeur(chomeurs.get(0), chomeur2);
+        initPlayer(player1, chomeur1);
+        initPlayer(player2, chomeur2);
     }
     
     public void initPlayer(Player player, VBox chomeurVBox) {
@@ -89,7 +72,7 @@ public class GameController {
     		Attack attack = attacks.get(i);
     	    final int numAttack = i;
     		Button button = new Button(attack.getName());
-    		button.setOnAction(event -> { buttonAttack(attack.getName(), player); });
+    		button.setOnAction(event -> { buttonAttack(attack.getName()); });
     		button.setFont(new Font(16));
     		if(numAttack < 3) {
             	attackHBox1.getChildren().add(button);
@@ -103,13 +86,11 @@ public class GameController {
 		});
     }
 
-    public void buttonAttack(String attackName, Player player) { 
+    public void buttonAttack(String attackName) { 
     	if(round) {
     		
     		round = false;
-    		if(player == player1) {
-    			attack(attackName, player, player2, chomeur2);		
-    		}
+    		attack(attackName, player1, player2, chomeur2);		
     		
     		attackEnemy();
     		
@@ -152,19 +133,26 @@ public class GameController {
     		damageResult = attack.getAtt();
 		}
 		
-		addMessage(chomeur.getName() + " fait " + damageResult + " avec "+ attackName);
+		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
 		
 		if(chomeurEnemy.modifHp(-damageResult)) {
 			addMessage(chomeurEnemy.getName() + " est KO");
+			List<Chomeur> chomeurs = player2.getChomeurs();
+			for(int i = 0; i < chomeurs.size(); i++) {
+				Chomeur chomeurLoc = chomeurs.get(i);
+				if(chomeurLoc.getHp() > 0) {
+					player2.
+					break;
+				}
+			}
 		}
 		
 		initChomeur(chomeurEnemy, vbox);
     }
     
     public void initView(Player player, VBox chomeurVBox) {
-    	
-    	player = new Player();
     	player.addChomeur("Brigitte");
+
     	for(Chomeur chomeur : player.getChomeurs()) {
         	addMessage(chomeur.getString());
     	}

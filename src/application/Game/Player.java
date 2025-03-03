@@ -31,4 +31,8 @@ public class Player {
 	public Chomeur getChomeurActif() {
 		return chomeurs.get(chomeurActif);
 	}
+	
+	public void setChomeurActif(int num) {
+		chomeurActif = num;
+	}
 }
