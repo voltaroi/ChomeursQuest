@@ -100,8 +100,6 @@ public class SelectionController {
                 	if (compare(getType(attacksDirectoryPath + file.getName()), "neutre")) {
                 		comboBox.getItems().add(file.getName());
                 	}
-                	System.out.println(getType(attacksDirectoryPath + file.getName()));
-                	System.out.println(chomeurTypes);
                     if (file.isFile()&&compare(getType(attacksDirectoryPath + file.getName()), chomeurTypes)) {
                     		comboBox.getItems().add(file.getName());
                                          
@@ -149,10 +147,10 @@ public class SelectionController {
         motsLigne1.retainAll(motsLigne2);
 
         if (!motsLigne1.isEmpty()) {
-            System.out.println("Mots communs trouvés : " + motsLigne1);
+          //  System.out.println("Mots communs trouvés : " + motsLigne1);
             return true;
         } else {
-            System.out.println("Aucun mot commun trouvé.");
+          //  System.out.println("Aucun mot commun trouvé.");
             return false;
         }
     }
