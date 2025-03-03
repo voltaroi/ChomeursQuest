@@ -35,6 +35,7 @@
     <HBox>
 	    <Button text="+ add chomeur" onAction="#handleAdd"/>
 	    <Button text="clear team" onAction="#handleClear"/>
+	    <Button text="ready" onAction="#handleReady"/>
 	    <Button text="random team" onAction="#handleRandom"/>
 	    <Button text="Retour" onAction="#handleBack"/>
     </HBox>

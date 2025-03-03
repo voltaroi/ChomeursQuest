@@ -39,6 +39,8 @@ public class SelectionController {
     private Text description;
     
     private String team;
+    
+    private int numberChomeurTeam = 0;
         
 
     // Chemin vers le dossier contenant les attaques
@@ -63,8 +65,7 @@ public class SelectionController {
             loadAttack(attack4ComboBox); 
             load(itemComboBox, itemsDirectoryPath);
         });
-       
-        
+        handleClear(); 
     }
 
     // Charger les fichiers dans une ComboBox
@@ -216,6 +217,7 @@ public class SelectionController {
                 "Attack 2 = " + attack2 + "\n" +
                 "Attack 3 = " + attack3 + "\n" +
                 "Attack 4 = " + attack4);
+            numberChomeurTeam ++;
             addChomeur("\n"+
             "name =" + chomeur + "\n" + 
             "item =" + item + "\n" + 
@@ -239,7 +241,7 @@ public class SelectionController {
 	        // Sauvegarde le texte dans le fichier
 	        writer.write(team);
 	        writer.newLine();  // Ajoute une nouvelle ligne pour garantir la fin correcte du fichier
-	        showAlert("Succès","team.txt a été mis à jour");
+	       // showAlert("Succès","team.txt a été mis à jour");
 	    } catch (IOException e) {
 	        // Gère les erreurs de sauvegarde du fichier
 	        showAlert("Erreur", "Erreur lors de la sauvegarde du fichier : " + e.getMessage());
@@ -255,6 +257,19 @@ public class SelectionController {
     @FXML
     private void handleRandom(ActionEvent event) {
         navigateTo(event, "/views/Game.fxml", "Game");
+    }
+    
+    @FXML
+    private void handleReady(ActionEvent event) {
+    	if(numberChomeurTeam < 3) {
+    		 showAlert("Erreur", "pas asseaz de chomeurs");
+    	}
+    	if(numberChomeurTeam > 6) {
+   		 showAlert("Erreur", "trop de chomeurs");
+     	}
+    	if(numberChomeurTeam >= 3 && numberChomeurTeam <= 6) { 
+    		navigateTo(event, "/views/Game.fxml", "Game");
+    	}
     }
         
     
