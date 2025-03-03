@@ -193,55 +193,65 @@ public class Chomeur {
         return sb.toString();
     }
     
-    public void fromTeam(String filePath) {
+    public void fromTeam(String filePath, int numberChomeur) {
 
     	String nameAttack;
-    	String newType;
+    	boolean isValid = true;
+    	int chunkSize = 7; // Taille du bloc
     	
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
+            int lineCount = 0;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("=");
+                lineCount++;
+                System.out.println(line);
+                if (lineCount % chunkSize == 0) { 
+                  System.out.println("----- Fin du bloc -----\n");
+                break;}
                 if (parts.length == 2) {
-                    switch (parts[0]) {
-                        case "name":
-                            name = parts[1];
-                            setStat(name);
-                            break;
-                        case "attack1":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
-                            break;
-                        case "attack2":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                        		System.out.println(nameAttack);
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
-                            break;
-                        case "attack3":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
-                            break;
-                        case "attack4":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
-                            break;
-                    }
+                	if(isValid) {
+	                    switch (parts[0]) {
+	                        case "name":
+	                            name = parts[1];
+	                            setStat(name);
+	                            break;
+	                        case "attack1":
+	                        	nameAttack = parts[1];
+	                        	if(!nameAttack.equals("none")) {
+	                            	Attack newAttack = new Attack();
+	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
+	                            	attacks.add(newAttack);
+	                        	}
+	                            break;
+	                        case "attack2":
+	                        	nameAttack = parts[1];
+	                        	if(!nameAttack.equals("none")) {
+	                        		System.out.println(nameAttack);
+	                            	Attack newAttack = new Attack();
+	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
+	                            	attacks.add(newAttack);
+	                        	}
+	                            break;
+	                        case "attack3":
+	                        	nameAttack = parts[1];
+	                        	if(!nameAttack.equals("none")) {
+	                            	Attack newAttack = new Attack();
+	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
+	                            	attacks.add(newAttack);
+	                        	}
+	                            break;
+	                        case "attack4":
+	                        	nameAttack = parts[1];
+	                        	if(!nameAttack.equals("none")) {
+	                            	Attack newAttack = new Attack();
+	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
+	                            	attacks.add(newAttack);
+	                            	isValid = false;
+	                        	}
+	                            break;
+	                    }
+                	}
                 }
             }
         } catch (IOException e) {
@@ -250,8 +260,8 @@ public class Chomeur {
     }
     
     private void setStat(String nametxt) {
-    	
-    try (BufferedReader br = new BufferedReader(new FileReader("src/assets/chomeurs/" + nametxt))) {
+    	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "chomeurs", nametxt).toString();
+    try (BufferedReader br = new BufferedReader(new FileReader(path))) {
         String line;
         String newType;
         while ((line = br.readLine()) != null) {

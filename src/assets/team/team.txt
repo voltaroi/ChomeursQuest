@@ -1,1 +1,22 @@
 
+name =Brigitte.txt
+item =items.txt
+attack1 =attackTest.txt
+attack2 =attackTest.txt
+attack3 =attackTest.txt
+attack4 =attackTest.txt
+
+name =macron.txt
+item =items.txt
+attack1 =attackTest.txt
+attack2 =attackTest.txt
+attack3 =attackTest.txt
+attack4 =attackTest.txt
+
+name =Brigitte.txt
+item =items.txt
+attack1 =attackTest.txt
+attack2 =attackTest.txt
+attack3 =attackTest.txt
+attack4 =test1.txt
+

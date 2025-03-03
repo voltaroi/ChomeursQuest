@@ -13,7 +13,8 @@ public class Player {
 	public Player() {
 		chomeurs = new ArrayList<>();
 		Chomeur newChomeur = new Chomeur();
-		newChomeur.fromTeam("src/assets/teams/random.txt");
+		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "random" + ".txt").toString();
+		newChomeur.fromTeam(path,1);
 		chomeurs.add(newChomeur);
 	}
 	
