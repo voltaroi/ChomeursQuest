@@ -141,7 +141,11 @@ public class GameController {
 			for(int i = 0; i < chomeurs.size(); i++) {
 				Chomeur chomeurLoc = chomeurs.get(i);
 				if(chomeurLoc.getHp() > 0) {
-					player2.
+					player2.setChomeurActif(i);
+					initChomeur(player2.getChomeurActif(), vbox);
+					if(player2 == this.player1) {
+						initAttack(player2);
+					}
 					break;
 				}
 			}
