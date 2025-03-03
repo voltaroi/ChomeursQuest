@@ -5,6 +5,7 @@ import java.util.List;
 import application.Game.Attack;
 import application.Game.Chomeur;
 import application.Game.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -43,26 +44,13 @@ public class GameController {
     private boolean round = true;
     
     @FXML
-    private void testButton() {
-        Button test = new Button("Test");
-        test.setOnAction(event -> System.out.println("Bouton test cliqué !"));
-        attackHBox1.getChildren().add(test);
-    }
-
-    
-    @FXML
     public void initialize() {
     	
-    	testButton();
-    	
-//    	int num = (int) (Math.random() * 2);
-//    	if(num == 0) {
-//    		round = true;
-//    	} else {
-//    		round = false;
-//    	}
-    	
     	gc = myCanvas.getGraphicsContext2D();
+    	myCanvas.setMouseTransparent(true);
+    	chomeur1.setMouseTransparent(true);
+    	chomeur2.setMouseTransparent(true);
+
     	gc.setFill(Color.LIGHTBLUE);
         gc.fillRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
         
@@ -96,11 +84,12 @@ public class GameController {
     	List<Chomeur> chomeurs = player.getChomeurs();
     	List<Attack> attacks = chomeurs.get(0).getAllAttack();
     	attackHBox1.getChildren().clear();
-    	int numAttack = 0;
-    	for(Attack attack : attacks) {
-    		numAttack += 1;
+    	attackHBox2.getChildren().clear();
+    	for (int i = 0; i < attacks.size(); i++) {
+    		Attack attack = attacks.get(i);
+    	    final int numAttack = i;
     		Button button = new Button(attack.getName());
-    		button.setOnAction(event -> { buttonAttack(attack); });
+    		button.setOnAction(event -> { buttonAttack(attack.getName(), player); });
     		button.setFont(new Font(16));
     		if(numAttack < 3) {
             	attackHBox1.getChildren().add(button);
@@ -108,14 +97,72 @@ public class GameController {
             	attackHBox2.getChildren().add(button);
     		}
     	}
+		Platform.runLater(() -> {
+		    attackHBox1.layout();
+		    attackHBox2.layout();
+		});
     }
 
-    public void buttonAttack(Attack attack) { 
+    public void buttonAttack(String attackName, Player player) { 
     	if(round) {
-    		addMessage(attack.getName());
+    		
+    		round = false;
+    		if(player == player1) {
+    			attack(attackName, player, player2, chomeur2);		
+    		}
+    		
+    		attackEnemy();
+    		
     	} else {
     		addMessage("Ce n'est pas ton tour");
     	}
+    }
+    
+    public void attackEnemy() {
+//        try {
+//            Thread.sleep(1000);
+            Chomeur chomeur = player2.getChomeurActif();
+            List<Attack> attacks = chomeur.getAllAttack();
+            
+            int randomIndex = (int) Math.floor(Math.random() * attacks.size());
+            Attack attack = attacks.get(randomIndex);
+            attack(attack.getName(), player2, player1, chomeur1);	
+            round = true;
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+    }
+    
+    public void attack(String attackName, Player player, Player player2 , VBox vbox) {
+		Chomeur chomeur = player.getChomeurActif();
+		Attack attack = chomeur.getAttackByName(attackName);
+		
+		float damageResult = 0;
+		Chomeur chomeurEnemy = player2.getChomeurActif();
+		
+		if(attack.isAttackSpe()) {
+    		boolean typeEqual = false;
+    		System.out.println(chomeurEnemy.getTypes());
+    		for(String type : chomeurEnemy.getTypes()) {
+    			if(type.equals(attack.getType())) {
+    				typeEqual = true;
+    			}
+    		}
+    		if(typeEqual) {
+    			damageResult = attack.getAtt() / 2;
+    		} else {
+    			damageResult = attack.getAtt();
+    		}
+		} else {
+    		damageResult = attack.getAtt();
+		}
+		
+		addMessage(chomeur.getName() + " fait " + damageResult + " avec "+ attackName);
+		initChomeur(chomeurEnemy, vbox);
+		
+		if(chomeurEnemy.modifHp(-damageResult)) {
+			addMessage(chomeurEnemy.getName() + " est KO");
+		}
     }
     
     public void initView(Player player, VBox chomeurVBox) {
@@ -131,6 +178,7 @@ public class GameController {
     }
     
     public void initChomeur(Chomeur chomeur, VBox chomeurVBox) {
+    	chomeurVBox.getChildren().clear();
     	gc.setFill(Color.LIGHTBLUE);
         gc.fillRect(0, 0, myCanvas.getWidth()/2, myCanvas.getHeight()/2);
         drawText(chomeur.getName(), chomeurVBox);

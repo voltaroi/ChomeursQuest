@@ -8,6 +8,8 @@ public class Player {
 	
 	private List<Chomeur> chomeurs;
 	
+	private int chomeurActif = 0;
+	
 	public Player() {
 		chomeurs = new ArrayList<>();
 	}
@@ -21,5 +23,9 @@ public class Player {
 	
 	public List<Chomeur> getChomeurs() {
 		return chomeurs;
+	}
+	
+	public Chomeur getChomeurActif() {
+		return chomeurs.get(chomeurActif);
 	}
 }

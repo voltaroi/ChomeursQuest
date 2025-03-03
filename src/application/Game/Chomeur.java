@@ -75,6 +75,19 @@ public class Chomeur {
 		return null;
 	}
 	
+	public List<String> getTypes() {
+		return types;
+	}
+	
+	public boolean modifHp(float add) {
+		hp += add;
+		boolean isDead = false;
+		if(hp <= 0) {
+			isDead = true;
+		}
+		return isDead;
+	}
+	
     public void FromFile(String filePath) {
 
     	String nameAttack;

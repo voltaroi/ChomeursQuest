@@ -15,6 +15,22 @@ public class Attack {
 		return name;
 	}
 	
+	public boolean isAttackSpe() {
+		return isAttackSpe;
+	}
+	
+	public float getAtt() {
+		return att;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public String getEffect() {
+		return effect;
+	}
+	
     public void FromFile(String filePath) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

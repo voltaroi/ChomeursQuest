@@ -1,5 +1,5 @@
 name=attackTest
-isAttackSpe = false
-att= 50
-type=poison
-effect=poison
+isAttackSpe=false
+att=3
+type=neutre
+effect=none
