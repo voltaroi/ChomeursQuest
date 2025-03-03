@@ -97,6 +97,9 @@ public class SelectionController {
 
             if (files != null) {
                 for (File file : files) {
+                	if (compare(getType(attacksDirectoryPath + file.getName()), "neutre")) {
+                		comboBox.getItems().add(file.getName());
+                	}
                 	System.out.println(getType(attacksDirectoryPath + file.getName()));
                 	System.out.println(chomeurTypes);
                     if (file.isFile()&&compare(getType(attacksDirectoryPath + file.getName()), chomeurTypes)) {

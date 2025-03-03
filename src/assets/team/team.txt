@@ -1,42 +1,8 @@
+null
+name =Brigitte.txt
+item =items.txt
+attack1 =test1.txt
+attack2 =test1.txt
+attack3 =test1.txt
+attack4 =test1.txt
 
-name :Brigitte.txt
-item :items.txt
-attack1 :test1.txt
-attack2 :attackTest.txt
-attack3 :attackTest.txt
-attack4 :test1.txt
-
-name :macron.txt
-item :items.txt
-attack1 :test1.txt
-attack2 :attackTest.txt
-attack3 :attackTest.txt
-attack4 :test1.txt
-
-name :Brigitte.txt
-item :items.txt
-attack1 :test1.txt
-attack2 :attackTest.txt
-attack3 :attackTest.txt
-attack4 :test1.txt
-
-name :macron.txt
-item :items.txt
-attack1 :test1.txt
-attack2 :attackTest.txt
-attack3 :attackTest.txt
-attack4 :test1.txt
-
-name :macron.txt
-item :items.txt
-attack1 :test1.txt
-attack2 :attackTest.txt
-attack3 :attackTest.txt
-attack4 :test1.txt
-
-name :macron.txt
-item :items.txt
-attack1 :test1.txt
-attack2 :attackTest.txt
-attack3 :attackTest.txt
-attack4 :test1.txt
