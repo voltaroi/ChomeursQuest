@@ -13,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -43,6 +45,8 @@ public class GameController {
     
     private boolean round = true;
     
+    private boolean endGame = false;
+    
     @FXML
     public void initialize() {
     	
@@ -64,8 +68,7 @@ public class GameController {
     }
     
     public void initAttack(Player player) {
-    	List<Chomeur> chomeurs = player.getChomeurs();
-    	List<Attack> attacks = chomeurs.get(0).getAllAttack();
+    	List<Attack> attacks = player.getChomeurActif().getAllAttack();
     	attackHBox1.getChildren().clear();
     	attackHBox2.getChildren().clear();
     	for (int i = 0; i < attacks.size(); i++) {
@@ -110,6 +113,11 @@ public class GameController {
     }
     
     public void attack(String attackName, Player player, Player player2 , VBox vbox) {
+    	
+    	if(endGame) {
+    		return;
+    	}
+    	
 		Chomeur chomeur = player.getChomeurActif();
 		Attack attack = chomeur.getAttackByName(attackName);
 		
@@ -118,7 +126,6 @@ public class GameController {
 		
 		if(attack.isAttackSpe()) {
     		boolean typeEqual = false;
-    		System.out.println(chomeurEnemy.getTypes());
     		for(String type : chomeurEnemy.getTypes()) {
     			if(type.equals(attack.getType())) {
     				typeEqual = true;
@@ -138,24 +145,37 @@ public class GameController {
 		if(chomeurEnemy.modifHp(-damageResult)) {
 			addMessage(chomeurEnemy.getName() + " est KO");
 			List<Chomeur> chomeurs = player2.getChomeurs();
+			boolean isFind = false;
+			int lastI = 0;
+			
 			for(int i = 0; i < chomeurs.size(); i++) {
 				Chomeur chomeurLoc = chomeurs.get(i);
 				if(chomeurLoc.getHp() > 0) {
-					player2.setChomeurActif(i);
-					initChomeur(player2.getChomeurActif(), vbox);
-					if(player2 == this.player1) {
-						initAttack(player2);
-					}
-					break;
+					isFind = true;
+					lastI = i;
 				}
+			}
+			
+			if(!isFind) {
+				endGame = true;
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Fin de partie");
+				alert.setHeaderText(null);
+				alert.setContentText(player2 + " a perdu");
+				alert.showAndWait();
+			} else {
+				player2.setChomeurActif(lastI);
+				chomeurEnemy = player2.getChomeurActif();
 			}
 		}
 		
 		initChomeur(chomeurEnemy, vbox);
+		initAttack(this.player1);
     }
     
     public void initView(Player player, VBox chomeurVBox) {
     	player.addChomeur("Brigitte");
+    	player.addChomeur("macron");
 
     	for(Chomeur chomeur : player.getChomeurs()) {
         	addMessage(chomeur.getString());
