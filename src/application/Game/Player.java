@@ -12,6 +12,9 @@ public class Player {
 	
 	public Player() {
 		chomeurs = new ArrayList<>();
+		Chomeur newChomeur = new Chomeur();
+		newChomeur.fromTeam("src/assets/teams/random.txt");
+		chomeurs.add(newChomeur);
 	}
 	
 	public void addChomeur(String chomeur) {

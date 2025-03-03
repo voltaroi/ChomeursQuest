@@ -192,5 +192,108 @@ public class Chomeur {
 
         return sb.toString();
     }
+    
+    public void fromTeam(String filePath) {
 
+    	String nameAttack;
+    	String newType;
+    	
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("=");
+                if (parts.length == 2) {
+                    switch (parts[0]) {
+                        case "name":
+                            name = parts[1];
+                            setStat(name);
+                            break;
+                        case "attack1":
+                        	nameAttack = parts[1];
+                        	if(!nameAttack.equals("none")) {
+                            	Attack newAttack = new Attack();
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
+                            	attacks.add(newAttack);
+                        	}
+                            break;
+                        case "attack2":
+                        	nameAttack = parts[1];
+                        	if(!nameAttack.equals("none")) {
+                        		System.out.println(nameAttack);
+                            	Attack newAttack = new Attack();
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
+                            	attacks.add(newAttack);
+                        	}
+                            break;
+                        case "attack3":
+                        	nameAttack = parts[1];
+                        	if(!nameAttack.equals("none")) {
+                            	Attack newAttack = new Attack();
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
+                            	attacks.add(newAttack);
+                        	}
+                            break;
+                        case "attack4":
+                        	nameAttack = parts[1];
+                        	if(!nameAttack.equals("none")) {
+                            	Attack newAttack = new Attack();
+                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
+                            	attacks.add(newAttack);
+                        	}
+                            break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void setStat(String nametxt) {
+    	
+    try (BufferedReader br = new BufferedReader(new FileReader("src/assets/chomeurs/" + nametxt))) {
+        String line;
+        String newType;
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split("=");
+            if (parts.length == 2) {
+                switch (parts[0]) {
+                    case "name":
+                        name = parts[1];
+                        break;
+                    case "hp":
+                        hp = Float.parseFloat(parts[1]);
+                        hpMax = Float.parseFloat(parts[1]);
+                        break;
+                    case "att":
+                        att = Float.parseFloat(parts[1]);
+                        break;
+                    case "attSpe":
+                        attSpe = Float.parseFloat(parts[1]);
+                        break;
+                    case "def":
+                        def = Float.parseFloat(parts[1]);
+                        break;
+                    case "defSpe":
+                        defSpe = Float.parseFloat(parts[1]);
+                        break;
+                    case "speed":
+                        speed = Float.parseFloat(parts[1]);
+                        break;
+                    case "type1":
+                    	newType = parts[1];
+                    	types.add(newType);
+                        break;
+                    case "type2":
+                    	newType = parts[1];
+                    	types.add(newType);
+                        break;
+    
+                }
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+  }
 }
