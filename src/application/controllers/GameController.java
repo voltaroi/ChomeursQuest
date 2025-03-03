@@ -119,18 +119,13 @@ public class GameController {
     }
     
     public void attackEnemy() {
-//        try {
-//            Thread.sleep(1000);
-            Chomeur chomeur = player2.getChomeurActif();
-            List<Attack> attacks = chomeur.getAllAttack();
-            
-            int randomIndex = (int) Math.floor(Math.random() * attacks.size());
-            Attack attack = attacks.get(randomIndex);
-            attack(attack.getName(), player2, player1, chomeur1);	
-            round = true;
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        Chomeur chomeur = player2.getChomeurActif();
+        List<Attack> attacks = chomeur.getAllAttack();
+        
+        int randomIndex = (int) Math.floor(Math.random() * attacks.size());
+        Attack attack = attacks.get(randomIndex);
+        attack(attack.getName(), player2, player1, chomeur1);
+        round = true;
     }
     
     public void attack(String attackName, Player player, Player player2 , VBox vbox) {
@@ -158,11 +153,12 @@ public class GameController {
 		}
 		
 		addMessage(chomeur.getName() + " fait " + damageResult + " avec "+ attackName);
-		initChomeur(chomeurEnemy, vbox);
 		
 		if(chomeurEnemy.modifHp(-damageResult)) {
 			addMessage(chomeurEnemy.getName() + " est KO");
 		}
+		
+		initChomeur(chomeurEnemy, vbox);
     }
     
     public void initView(Player player, VBox chomeurVBox) {
@@ -179,8 +175,6 @@ public class GameController {
     
     public void initChomeur(Chomeur chomeur, VBox chomeurVBox) {
     	chomeurVBox.getChildren().clear();
-    	gc.setFill(Color.LIGHTBLUE);
-        gc.fillRect(0, 0, myCanvas.getWidth()/2, myCanvas.getHeight()/2);
         drawText(chomeur.getName(), chomeurVBox);
         addProgressBar(chomeur.getHp(), chomeur.getHpMax(), chomeurVBox);
     }
