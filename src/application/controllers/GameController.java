@@ -1,5 +1,10 @@
 package application.controllers;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import application.Game.Attack;
@@ -41,6 +46,9 @@ public class GameController {
     @FXML
     private HBox attackHBox2;
     
+    @FXML
+    private HBox listChomeur;
+    
     private Player player1 = new Player();
     private Player player2 = new Player();
     
@@ -61,6 +69,7 @@ public class GameController {
         
         initPlayer(player1, chomeur1);
         initPlayer(player2, chomeur2);
+        displayTeam();
     }
     
     public void initPlayer(Player player, VBox chomeurVBox) {
@@ -231,4 +240,31 @@ public class GameController {
         pb.setProgress(value / maxValue);
         chomeurVBox.getChildren().add(pb);
     }
+    private void displayTeam() {
+   	 listChomeur.getChildren().clear();
+   	 List<String> noms = new ArrayList<>();
+   	 String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team.txt").toString();
+   	 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String ligne;
+            while ((ligne = br.readLine()) != null) {
+           	 if (ligne.startsWith("name=")) {
+                    // Extraire la partie après "name="
+                    String nom = ligne.substring(5); // 5 = longueur de "name="
+                    noms.add(nom);
+           	 }
+            }
+           
+            for (String nom : noms) {
+           	 String filename = nom.replace(".txt", "");  // Supprime ".txt"
+                Button button = new Button(filename); // Crée un bouton avec le nom
+                button.setOnAction(event -> {
+                    System.out.println(filename + " a été cliqué !");
+                }); // Ajouter un gestionnaire d'événements
+                listChomeur.getChildren().add(button); // Ajout du bouton au VBox
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+   }
 }

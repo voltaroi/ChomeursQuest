@@ -27,5 +27,5 @@
 		</ScrollPane>
 	</HBox>
 	
-   <StackPane fx:id="listChomeur" alignment="BOTTOM_RIGHT" style="-fx-background-color: blue;" prefHeight="100" />
+   <HBox fx:id="listChomeur" alignment="BOTTOM_RIGHT" prefHeight="40" />
 </VBox>

@@ -279,9 +279,10 @@ public class SelectionController {
              }
             
                  for (String nom : noms) {
-                     Button button = new Button(nom); // Crée un bouton avec le nom
+                	 String filename = nom.replace(".txt", "");  // Supprime ".txt"
+                     Button button = new Button(filename); // Crée un bouton avec le nom
                      button.setOnAction(event -> {
-                         System.out.println(nom + " a été cliqué !");
+                         System.out.println(filename + " a été cliqué !");
                      }); // Ajouter un gestionnaire d'événements
                      listChomeur.getChildren().add(button); // Ajout du bouton au VBox
                  }

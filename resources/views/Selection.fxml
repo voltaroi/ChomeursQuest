@@ -39,5 +39,5 @@
 	    <Button text="random team" onAction="#handleRandom"/>
 	    <Button text="Retour" onAction="#handleBack"/>
     </HBox>
-    <HBox fx:id="listChomeur" alignment="BOTTOM_RIGHT" prefHeight="50" />
+    <HBox fx:id="listChomeur" alignment="BOTTOM_RIGHT" prefHeight="40" />
 </VBox>
