@@ -18,6 +18,8 @@ public class Chomeur {
 	private float defSpe;
 	private float speed;
 	
+	private List<Effect> effects;
+	
 	private List<String> types;
 	private List<Attack> attacks;
 	
@@ -28,6 +30,20 @@ public class Chomeur {
 	
 	public List<Attack> getAllAttacks() {
 		return attacks;
+	}
+	
+	public void addEffect(Effect newEffect) {
+		boolean isFind = false;
+		for(int i=0; i < effects.size(); i++) {
+			if(effects.get(i).getName() == newEffect.getName()) {
+				isFind = true;
+				effects.get(i).setNumRound(newEffect.getNumRound());
+			}
+		}
+		
+		if(!isFind) {
+			effects.add(newEffect);
+		}
 	}
 	
 	public float getHp() {

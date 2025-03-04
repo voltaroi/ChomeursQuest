@@ -4,6 +4,7 @@ import java.util.List;
 
 import application.Game.Attack;
 import application.Game.Chomeur;
+import application.Game.Effect;
 import application.Game.Player;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -128,6 +129,22 @@ public class GameController {
 		
 		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
 		
+		chomeurEnemy = modifHp(chomeurEnemy, damageResult);
+		
+		attackEffect(chomeurEnemy, attack);
+		
+		initChomeur(chomeurEnemy, vbox);
+		initAttack(this.player1);
+    }
+    
+    public void attackEffect(Chomeur chomeurEnemy, Attack attack) {
+//    	if(attack.getEffect() != "none") {
+//    		Effect effect = new Effect();
+//    		chomeurEnemy.addEffect(effect);
+//    	}
+    }
+    
+    public Chomeur modifHp(Chomeur chomeurEnemy, float damageResult) {
 		if(chomeurEnemy.modifHp(-damageResult)) {
 			addMessage(chomeurEnemy.getName() + " est KO");
 			List<Chomeur> chomeurs = player2.getChomeurs();
@@ -154,9 +171,7 @@ public class GameController {
 				chomeurEnemy = player2.getChomeurActif();
 			}
 		}
-		
-		initChomeur(chomeurEnemy, vbox);
-		initAttack(this.player1);
+		return chomeurEnemy;
     }
     
     public float attackSpe(float damageResult, Attack attack, Chomeur chomeurEnemy) {

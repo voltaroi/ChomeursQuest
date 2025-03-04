@@ -9,7 +9,7 @@ public class Attack {
 	private boolean isAttackSpe = false;
 	private float att;
 	private String type;
-	private String effect;
+	private Effect effect = new Effect();
 	
 	public String getName() {
 		return name;
@@ -27,7 +27,7 @@ public class Attack {
 		return type;
 	}
 	
-	public String getEffect() {
+	public Effect getEffect() {
 		return effect;
 	}
 	
@@ -52,7 +52,13 @@ public class Attack {
                             type = parts[1];
                             break;
                         case "effect":
-                            effect = parts[1];
+                            effect.setName(parts[1]);
+                            break;
+                        case "effectTime":
+                        	effect.setNumRound(Integer.parseInt(parts[1]));
+                            break;
+                        case "effectDamage":
+                        	effect.setDamage(Integer.parseInt(parts[1]));
                             break;
                     }
                 }
