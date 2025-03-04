@@ -11,3 +11,4 @@ attack1=attackTest
 attack2=none
 attack3=none
 attack4=none
+listAttackSpe=test1.txt test2.txt
