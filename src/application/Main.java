@@ -1,5 +1,19 @@
 package application;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import javax.sound.sampled.*;
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +36,22 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Chomeur's Quest");
         primaryStage.show();
+        String path = Paths.get(System.getProperty("user.dir"), "resources", "sound" , "Pokemon.wav").toString();
+        playSound(path);
+        
+    }
+    
+    public static void playSound(String filePath) {
+        try {
+            File soundFile = new File(filePath);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Joue en boucle
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
