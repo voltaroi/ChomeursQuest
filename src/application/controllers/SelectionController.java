@@ -9,9 +9,13 @@ import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,6 +23,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.application.Platform;
 
 
 
@@ -41,6 +49,9 @@ public class SelectionController {
     private String team;
     
     private int numberChomeurTeam = 0;
+    
+    @FXML
+    private HBox listChomeur;
         
 
     // Chemin vers le dossier contenant les attaques
@@ -198,7 +209,7 @@ public class SelectionController {
                 if (ligne.contains("name") || ligne.contains("attack")) {
                 	continue;
                 }
-            	if ( ligne.contains("speed")) {
+            	if ( ligne.contains("speed") || ligne.contains("listAttack")) {
             				descriptionChomeurSelected += System.lineSeparator();
             			}
             	descriptionChomeurSelected += ligne + " ";
@@ -228,7 +239,10 @@ public class SelectionController {
         String attack3 = attack3ComboBox.getValue();
         String attack4 = attack4ComboBox.getValue();
 
-        
+        if (numberChomeurTeam > 5) {
+        	showAlert("erreur", "impossible d'ajouter plus de 6 chomeurs");
+        	return;
+        }
         if (chomeur == null || item == null || attack1 == null || attack2 == null || attack3 == null || attack4 == null) {
             showAlert("Erreur", "Veuillez sélectionner un chomeur, un objet et toutes les attaques.");
         } else {
@@ -240,13 +254,41 @@ public class SelectionController {
                 "Attack 4 = " + attack4);
             numberChomeurTeam ++;
             addChomeur("\n"+
-            "name =" + chomeur + "\n" + 
-            "item =" + item + "\n" + 
-            "attack1 =" + attack1 + "\n" +
-            "attack2 =" + attack2 + "\n" +
-            "attack3 =" + attack3 + "\n" +
-            "attack4 =" + attack4 + "\n");
+            "name=" + chomeur + "\n" + 
+            "item=" + item + "\n" + 
+            "attack1=" + attack1 + "\n" +
+            "attack2=" + attack2 + "\n" +
+            "attack3=" + attack3 + "\n" +
+            "attack4=" + attack4 + "\n");
+            displayTeam();
         }
+    }
+    
+    private void displayTeam() {
+    	 listChomeur.getChildren().clear();
+    	 List<String> noms = new ArrayList<>();
+    	 String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team.txt").toString();
+    	 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+             String ligne;
+             while ((ligne = br.readLine()) != null) {
+            	 if (ligne.startsWith("name=")) {
+                     // Extraire la partie après "name="
+                     String nom = ligne.substring(5); // 5 = longueur de "name="
+                     noms.add(nom);
+            	 }
+             }
+            
+                 for (String nom : noms) {
+                     Button button = new Button(nom); // Crée un bouton avec le nom
+                     button.setOnAction(event -> {
+                         System.out.println(nom + " a été cliqué !");
+                     }); // Ajouter un gestionnaire d'événements
+                     listChomeur.getChildren().add(button); // Ajout du bouton au VBox
+                 }
+             
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
     }
     
     private void addChomeur(String text) {
