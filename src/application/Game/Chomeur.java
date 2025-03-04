@@ -26,6 +26,7 @@ public class Chomeur {
 	public Chomeur() {
 	    types = new ArrayList<>();
 	    attacks = new ArrayList<>();
+	    effects = new ArrayList<>();
 	}
 	
 	public List<Attack> getAllAttacks() {
@@ -44,6 +45,24 @@ public class Chomeur {
 		if(!isFind) {
 			effects.add(newEffect);
 		}
+	}
+	
+	public boolean updateEffects() {
+		boolean canPlay = true;
+		for(int i=0; i < effects.size(); i++) {
+			if(effects.get(i).getNumRound() > 0) {
+				int numRound = effects.get(i).getNumRound();
+				effects.get(i).setNumRound(numRound - 1);
+				modifHp(-effects.get(i).getDamage());
+				System.out.println(effects.get(i).getName());
+				if(effects.get(i).getName().equals("stun")) {
+					canPlay = false;
+				}
+			} else {
+				effects.remove(i);
+			}
+		}
+		return canPlay;
 	}
 	
 	public float getHp() {

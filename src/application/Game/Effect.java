@@ -6,16 +6,6 @@ public class Effect {
 	private int numRound = 0;
 	private float damage = 0;
 	
-	public void initEffect(String newName, int lenght, float newDamage) {
-		name = newName;
-		if(name == "stun") {
-			numRound = lenght;
-		} else if(name == "poison" || name == "confused") {
-			damage = newDamage;
-			numRound = lenght;
-		}
-	}
-	
 	public String getName() {
 		return name;
 	}

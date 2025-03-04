@@ -53,6 +53,7 @@ public class Attack {
                             break;
                         case "effect":
                             effect.setName(parts[1]);
+                            System.out.println(parts[1]);
                             break;
                         case "effectTime":
                         	effect.setNumRound(Integer.parseInt(parts[1]));

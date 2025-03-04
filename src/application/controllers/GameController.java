@@ -125,23 +125,26 @@ public class GameController {
 		float damageResult = 0;
 		Chomeur chomeurEnemy = player2.getChomeurActif();
 		
-		damageResult = attackSpe(damageResult, attack, chomeurEnemy);
-		
-		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
-		
+    	if(player.getChomeurActif().updateEffects()) {
+    		damageResult = attackSpe(damageResult, attack, chomeurEnemy);
+    		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
+    		attackEffect(chomeurEnemy, attack);
+    	}
+    	
 		chomeurEnemy = modifHp(chomeurEnemy, damageResult);
-		
-		attackEffect(chomeurEnemy, attack);
 		
 		initChomeur(chomeurEnemy, vbox);
 		initAttack(this.player1);
     }
     
     public void attackEffect(Chomeur chomeurEnemy, Attack attack) {
-//    	if(attack.getEffect() != "none") {
-//    		Effect effect = new Effect();
-//    		chomeurEnemy.addEffect(effect);
-//    	}
+    	if(!attack.getEffect().getName().equals("none")) {
+    		Effect effect = new Effect();
+    		effect.setName(attack.getEffect().getName());
+    		effect.setNumRound(attack.getEffect().getNumRound());
+    		effect.setDamage(attack.getEffect().getDamage());
+    		chomeurEnemy.addEffect(effect);
+    	}
     }
     
     public Chomeur modifHp(Chomeur chomeurEnemy, float damageResult) {
