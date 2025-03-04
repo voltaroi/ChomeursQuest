@@ -41,7 +41,8 @@ public class TutoController {
                       "attack1=attackTest" + System.lineSeparator() +
                       "attack2=none" + System.lineSeparator() +
                       "attack3=none" + System.lineSeparator() +
-                      "attack4=none";
+                      "attack4=none" + System.lineSeparator() +
+                      "listAttackSpe=test1.txt test2.txt";
 
         // Affichage dans le TextArea1
         textArea1.setText(text1);
@@ -51,7 +52,9 @@ public class TutoController {
                       "isAttackSpe = false" + System.lineSeparator() +
                       "att= 50" + System.lineSeparator() +
                       "type=poison" + System.lineSeparator() +
-                      "effect=poison" + System.lineSeparator() ;
+                      "effect=poison" + System.lineSeparator() +
+                      "effectTime=2" + System.lineSeparator() +
+              		  "effectDamage=0" ;
         
         
         //affichage dans le textarea2
