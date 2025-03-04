@@ -1,0 +1,7 @@
+name=test1
+isAttackSpe=true
+att=2
+type=politique
+effect=none
+effectTime=0
+effectDamage=0

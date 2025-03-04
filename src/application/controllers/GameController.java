@@ -241,30 +241,37 @@ public class GameController {
         chomeurVBox.getChildren().add(pb);
     }
     private void displayTeam() {
-   	 listChomeur.getChildren().clear();
-   	 List<String> noms = new ArrayList<>();
-   	 String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team.txt").toString();
-   	 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String ligne;
-            while ((ligne = br.readLine()) != null) {
-           	 if (ligne.startsWith("name=")) {
-                    // Extraire la partie après "name="
-                    String nom = ligne.substring(5); // 5 = longueur de "name="
-                    noms.add(nom);
-           	 }
-            }
-           
-            for (String nom : noms) {
-           	 String filename = nom.replace(".txt", "");  // Supprime ".txt"
-                Button button = new Button(filename); // Crée un bouton avec le nom
-                button.setOnAction(event -> {
-                    System.out.println(filename + " a été cliqué !");
-                }); // Ajouter un gestionnaire d'événements
-                listChomeur.getChildren().add(button); // Ajout du bouton au VBox
-            }
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-   }
+	   	 listChomeur.getChildren().clear();
+	   	 List<Chomeur> ArrayListChomeur = player1.getChomeurs();
+	   	 List<String> noms = new ArrayList<>();
+	   	 for (Chomeur chomeur : ArrayListChomeur) {
+	   		 noms.add(chomeur.getName());
+	   	 }
+    }
+   	
+   	 
+//   	 String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team.txt").toString();
+//   	 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+//            String ligne;
+//            while ((ligne = br.readLine()) != null) {
+//           	 if (ligne.startsWith("name=")) {
+//                    // Extraire la partie après "name="
+//                    String nom = ligne.substring(5); // 5 = longueur de "name="
+//                    noms.add(nom);
+//           	 }
+//            }
+//           
+//            for (String nom : noms) {
+//           	 String filename = nom.replace(".txt", "");  // Supprime ".txt"
+//                Button button = new Button(filename); // Crée un bouton avec le nom
+//                button.setOnAction(event -> {
+//                    System.out.println(filename + " a été cliqué !");
+//                }); // Ajouter un gestionnaire d'événements
+//                listChomeur.getChildren().add(button); // Ajout du bouton au VBox
+//            }
+//            
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//   }
 }

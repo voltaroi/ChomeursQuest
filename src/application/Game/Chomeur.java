@@ -47,6 +47,10 @@ public class Chomeur {
 		}
 	}
 	
+	public void setName(String nameset) {
+		name = nameset;
+	}
+	
 	public boolean updateEffects() {
 		boolean canPlay = true;
 		for(int i=0; i < effects.size(); i++) {
@@ -214,7 +218,11 @@ public class Chomeur {
         return sb.toString();
     }
     
-    public void fromTeam(String filePath, int numberChomeur) {
+    public void clearAttacks() {
+    	attacks.clear();
+    }
+    
+  /*  public void fromTeam(String filePath, int numberChomeur) {
 
     	boolean isValid = true;
     	int chunkSize = 7; // Taille du bloc
@@ -255,7 +263,7 @@ public class Chomeur {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
     
     private void setStat(String nametxt) {
     	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "chomeurs", nametxt).toString();
