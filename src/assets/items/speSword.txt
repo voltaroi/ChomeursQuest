@@ -1,0 +1,3 @@
+name=speSword
+effet=attSpe
+value=20

@@ -1,0 +1,3 @@
+name=shoe
+effet=speed
+value=20
