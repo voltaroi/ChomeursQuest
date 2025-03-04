@@ -232,10 +232,19 @@ public class GameController {
     private void displayTeam() {
 	   	 listChomeur.getChildren().clear();
 	   	 List<Chomeur> ArrayListChomeur = player1.getChomeurs();
-	   	 List<String> noms = new ArrayList<>();
-	   	 for (Chomeur chomeur : ArrayListChomeur) {
-	   		 noms.add(chomeur.getName());
-	   	 }
+	     for (Chomeur  chomeur : ArrayListChomeur) {
+	    	 if (chomeur == player1.getChomeurActif()) {continue;}
+             Button button = new Button(chomeur.getName()); // Crée un bouton avec le nom
+             button.setOnAction(event -> {
+            	 player1.addChomeur(player1.getChomeurActif());
+            	 player1.setChomeurActif(player1.getNumberChomeur(chomeur));
+            	 System.out.println(chomeur.getName() + " a été cliqué !");
+            	 player1.removeChomeur(chomeur);
+            	 initPlayer(player1, chomeur1);
+            	 displayTeam();
+             }); // Ajouter un gestionnaire d'événements
+             listChomeur.getChildren().add(button); // Ajout du bouton au VBox
+         }
     }
    	 
 //   	 String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team.txt").toString();

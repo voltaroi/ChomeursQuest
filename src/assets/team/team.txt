@@ -1,1 +1,22 @@
 
+name=yoan.txt
+item=healthPotion
+attack1=attackTest.txt
+attack2=attackTest.txt
+attack3=attackTest.txt
+attack4=attackTest.txt
+
+name=macron.txt
+item=healthPotion
+attack1=attackTest.txt
+attack2=attackTest.txt
+attack3=attackTest.txt
+attack4=attackTest.txt
+
+name=Brigitte.txt
+item=healthPotion
+attack1=test2.txt
+attack2=test1.txt
+attack3=test1.txt
+attack4=test2.txt
+

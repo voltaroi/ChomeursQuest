@@ -1,0 +1,14 @@
+name=yoan
+hp=12
+att=4
+attSpe=6
+def=3
+defSpe=4
+speed=1
+type1=politique
+type2=poison
+attack1=attackTest.txt
+attack2=none
+attack3=none
+attack4=none
+listAttackSpe=test1.txt test2.txt

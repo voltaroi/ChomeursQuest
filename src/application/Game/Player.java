@@ -17,13 +17,16 @@ public class Player {
 	public Player() {
 		chomeurs = new ArrayList<>();
 		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team" + ".txt").toString();
+		addTeam(path);
+		
+	}
+	public void addTeam(String path) {
 		int numberChomeur = getNumberChomeur(path);
 		for (int i = 0; i < numberChomeur; i++) {
 			Chomeur newChomeur = new Chomeur();
 			newChomeur = fromTeam(path, newChomeur, i + 1);
 			chomeurs.add(newChomeur);	
 		}
-		
 	}
 	
 	public void addChomeur(String chomeur) {
@@ -31,6 +34,14 @@ public class Player {
 		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "chomeurs", chomeur + ".txt").toString();
 		newChomeur.FromFile(path);
 		chomeurs.add(newChomeur);
+	}
+	
+	public void addChomeur(Chomeur chomeur) {
+		chomeurs.add(chomeur);
+	}
+	
+	public void removeChomeur(Chomeur chomeur) {
+		chomeurs.remove(chomeur);
 	}
 	
 	public List<Chomeur> getChomeurs() {
@@ -41,7 +52,15 @@ public class Player {
 		return chomeurs.get(chomeurActif);
 	}
 	
-	public void setChomeurActif(int num) {
+	public int getNumberChomeurActif() {
+		return chomeurs.indexOf(chomeurs.get(chomeurActif));
+	}
+	
+	public int getNumberChomeur(Chomeur chomeur) {
+		return chomeurs.indexOf(chomeur);
+	}
+	
+	public void setChomeurActif(int num) {// entre 0 et 5
 		chomeurActif = num;
 	}
 	
@@ -73,7 +92,6 @@ public class Player {
 
 	        // Lire les 7 lignes du chômeur actuel
 	        while ((line = br.readLine()) != null && lineCount < chunkSize) {
-	        	if(line=="stun" ) {continue;}
 	        	String[] parts = line.split("=");  // Séparer la ligne en clé et valeur
 	            lineCount++;
 	            System.out.println(line);
