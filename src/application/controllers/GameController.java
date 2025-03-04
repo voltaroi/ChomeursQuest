@@ -1,9 +1,5 @@
 package application.controllers;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -164,8 +160,7 @@ public class GameController {
 			int lastI = 0;
 			
 			for(int i = 0; i < chomeurs.size(); i++) {
-				Chomeur chomeurLoc = chomeurs.get(i);
-				if(chomeurLoc.getHp() > 0) {
+				if(chomeurs.get(i).getHp() > 0) {
 					isFind = true;
 					lastI = i;
 				}
@@ -179,6 +174,7 @@ public class GameController {
 				alert.setContentText(player2 + " a perdu");
 				alert.showAndWait();
 			} else {
+				System.out.println(lastI);
 				player2.setChomeurActif(lastI);
 				chomeurEnemy = player2.getChomeurActif();
 			}
@@ -206,15 +202,7 @@ public class GameController {
     }
     
     public void initView(Player player, VBox chomeurVBox) {
-//    	player.addChomeur("Brigitte");
-//    	player.addChomeur("macron");
-
-    	for(Chomeur chomeur : player.getChomeurs()) {
-        	addMessage(chomeur.getString());
-    	}
-    	
-    	List<Chomeur> chomeurs = player.getChomeurs();
-    	initChomeur(chomeurs.get(0), chomeurVBox);
+    	initChomeur(player.getChomeurActif(), chomeurVBox);
     }
     
     public void initChomeur(Chomeur chomeur, VBox chomeurVBox) {
@@ -240,6 +228,7 @@ public class GameController {
         pb.setProgress(value / maxValue);
         chomeurVBox.getChildren().add(pb);
     }
+    
     private void displayTeam() {
 	   	 listChomeur.getChildren().clear();
 	   	 List<Chomeur> ArrayListChomeur = player1.getChomeurs();
@@ -248,7 +237,6 @@ public class GameController {
 	   		 noms.add(chomeur.getName());
 	   	 }
     }
-   	
    	 
 //   	 String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team.txt").toString();
 //   	 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
