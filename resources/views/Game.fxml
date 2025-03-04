@@ -17,11 +17,15 @@
 		    <VBox alignment="BOTTOM_RIGHT" spacing="5">
 		        <HBox alignment="BOTTOM_RIGHT" spacing="5" fx:id="attackHBox1"/>
 		        <HBox alignment="BOTTOM_RIGHT" spacing="5" fx:id="attackHBox2"/>
+		        
 		    </VBox>
 		    <VBox fx:id="chomeur2" alignment="TOP_RIGHT" spacing="5"/>
 		</StackPane>
+		
 		<ScrollPane fitToWidth="true" fitToHeight="false">
 				<VBox fx:id="info"></VBox>
 		</ScrollPane>
 	</HBox>
+	
+   <StackPane fx:id="listChomeur" alignment="BOTTOM_RIGHT" style="-fx-background-color: blue;" prefHeight="100" />
 </VBox>
