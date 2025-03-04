@@ -101,7 +101,7 @@ public class SelectionController {
                 	if (compare(getType(attacksDirectoryPath + file.getName()), "neutre")) {
                 		comboBox.getItems().add(file.getName());
                 	}
-                    if (file.isFile()&&compare(getType(attacksDirectoryPath + file.getName()), chomeurTypes)) {
+                    if (file.isFile() && compare(getListAttack(chomeursDirectoryPath + chomeur), file.getName())) {
                     		comboBox.getItems().add(file.getName());
                                          
                     }
@@ -139,6 +139,27 @@ public class SelectionController {
             e.printStackTrace();
         }
         return type;
+    }
+    
+    public String getListAttack(String filePath) {
+    	String listAttack = "" ;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("=");
+                if (parts.length == 2) {
+                    switch (parts[0]) {
+	                    case "listAttackSpe":
+	                    	listAttack += parts[1];
+	                        break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return listAttack;
     }
     
     public static boolean compare(String ligne1, String ligne2) {
