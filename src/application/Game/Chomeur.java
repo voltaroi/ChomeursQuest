@@ -18,6 +18,8 @@ public class Chomeur {
 	private float defSpe;
 	private float speed;
 	
+	private Item item;
+	
 	private List<Effect> effects;
 	
 	private List<String> types;
@@ -28,6 +30,39 @@ public class Chomeur {
 	    attacks = new ArrayList<>();
 	    effects = new ArrayList<>();
 	}
+	
+	public Item getItem() {
+		return item;
+	}
+	
+	public void setItem(Item newItem) {
+	    item = newItem;
+	    String effect = item.getEffect();
+	    float value = item.getValue();
+
+	    switch (effect) {
+	        case "hp":
+	            hp += value;
+	            hpMax += value;
+	            break;
+	        case "def":
+	            def += value;
+	            break;
+	        case "defSpe":
+	            defSpe += value;
+	            break;
+	        case "att":
+	            att += value;
+	            break;
+	        case "attSpe":
+	            attSpe += value;
+	            break;
+	        case "speed":
+	            speed += value;
+	            break;
+	    }
+	}
+
 	
 	public List<Attack> getAllAttacks() {
 		return attacks;
@@ -85,6 +120,10 @@ public class Chomeur {
 		return name;
 	}
 	
+	public float getAtt() {
+		return att;
+	}
+	
 	public void modifAtt(float add) {
 		att += add;
 	}
@@ -93,12 +132,24 @@ public class Chomeur {
 		attSpe += add;
 	}
 	
+	public float getAttSpe() {
+		return attSpe;
+	}
+	
 	public void modifDef(float add) {
 		def += add;
 	}
 	
+	public float getDef() {
+		return def;
+	}
+	
 	public void modifDefSpe(float add) {
 		defSpe += add;
+	}
+	
+	public float getDefSpe() {
+		return defSpe;
 	}
 	
 	public void modifSpeed(float add) {
@@ -221,49 +272,6 @@ public class Chomeur {
     public void clearAttacks() {
     	attacks.clear();
     }
-    
-  /*  public void fromTeam(String filePath, int numberChomeur) {
-
-    	boolean isValid = true;
-    	int chunkSize = 7; // Taille du bloc
-    	
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            int lineCount = 0;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split("=");
-                lineCount++;
-                System.out.println(line);
-                if (lineCount % chunkSize == 0) { 
-                  System.out.println("----- Fin du bloc -----\n");
-                break;}
-                if (parts.length == 2) {
-                	if(isValid) {
-	                    switch (parts[0]) {
-	                        case "name":
-	                            name = parts[1];
-	                            setStat(name);
-	                            break;
-	                        case "attack1":
-	                        	newAttack(parts[1]);
-	                            break;
-	                        case "attack2":
-	                        	newAttack(parts[1]);
-	                            break;
-	                        case "attack3":
-	                        	newAttack(parts[1]);
-	                            break;
-	                        case "attack4":
-	                        	newAttack(parts[1]);
-	                            break;
-	                    }
-                	}
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
     
     private void setStat(String nametxt) {
     	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "chomeurs", nametxt).toString();

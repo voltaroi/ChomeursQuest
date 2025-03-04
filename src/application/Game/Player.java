@@ -25,7 +25,7 @@ public class Player {
 		for (int i = 0; i < numberChomeur; i++) {
 			Chomeur newChomeur = new Chomeur();
 			newChomeur = fromTeam(path, newChomeur, i + 1);
-			chomeurs.add(newChomeur);	
+			chomeurs.add(newChomeur);
 		}
 	}
 	
@@ -104,6 +104,12 @@ public class Player {
 	                            chomeur.FromFile(chomeurPath+"/"+name);
 	                            chomeur.clearAttacks();	                            
 	                            break;
+	                        case "item":
+	                        	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "items", parts[1] + ".txt").toString();
+	                        	Item newItem = new Item();
+	                        	newItem.FromFile(path);
+	                        	chomeur.setItem(newItem);
+	                        	break;
 	                        case "attack1":
 	                            chomeur.newAttack(parts[1]);
 	                            break;

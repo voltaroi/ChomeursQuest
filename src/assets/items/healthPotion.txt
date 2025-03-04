@@ -1,0 +1,3 @@
+name=healthPotion
+effect=hp
+value=20

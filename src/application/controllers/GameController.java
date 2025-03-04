@@ -1,6 +1,5 @@
 package application.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import application.Game.Attack;
@@ -131,7 +130,7 @@ public class GameController {
 		Chomeur chomeurEnemy = player2.getChomeurActif();
 		
     	if(player.getChomeurActif().updateEffects()) {
-    		damageResult = attackSpe(damageResult, attack, chomeurEnemy);
+    		damageResult = attackSpe(damageResult, attack, chomeur, chomeurEnemy);
     		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
     		attackEffect(chomeurEnemy, attack);
     	}
@@ -182,7 +181,7 @@ public class GameController {
 		return chomeurEnemy;
     }
     
-    public float attackSpe(float damageResult, Attack attack, Chomeur chomeurEnemy) {
+    public float attackSpe(float damageResult, Attack attack, Chomeur chomeur, Chomeur chomeurEnemy) {
 		if(attack.isAttackSpe()) {
     		boolean typeEqual = false;
     		for(String type : chomeurEnemy.getTypes()) {
@@ -195,8 +194,11 @@ public class GameController {
     		} else {
     			damageResult = attack.getAtt();
     		}
+    		
+    		damageResult =  (float) (chomeur.getAttSpe() * (damageResult / chomeurEnemy.getDefSpe()) * (0.85 + Math.random() * (1 - 0.85)));
 		} else {
     		damageResult = attack.getAtt();
+    		damageResult =  (float) (chomeur.getAtt() * (damageResult / chomeurEnemy.getDef()) * (0.85 + Math.random() * (1 - 0.85)));
 		}
     	return damageResult;
     }

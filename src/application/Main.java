@@ -10,9 +10,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javax.sound.sampled.*;
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
