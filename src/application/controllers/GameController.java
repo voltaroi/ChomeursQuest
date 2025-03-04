@@ -124,21 +124,7 @@ public class GameController {
 		float damageResult = 0;
 		Chomeur chomeurEnemy = player2.getChomeurActif();
 		
-		if(attack.isAttackSpe()) {
-    		boolean typeEqual = false;
-    		for(String type : chomeurEnemy.getTypes()) {
-    			if(type.equals(attack.getType())) {
-    				typeEqual = true;
-    			}
-    		}
-    		if(typeEqual) {
-    			damageResult = attack.getAtt() / 2;
-    		} else {
-    			damageResult = attack.getAtt();
-    		}
-		} else {
-    		damageResult = attack.getAtt();
-		}
+		damageResult = attackSpe(damageResult, attack, chomeurEnemy);
 		
 		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
 		
@@ -173,9 +159,28 @@ public class GameController {
 		initAttack(this.player1);
     }
     
+    public float attackSpe(float damageResult, Attack attack, Chomeur chomeurEnemy) {
+		if(attack.isAttackSpe()) {
+    		boolean typeEqual = false;
+    		for(String type : chomeurEnemy.getTypes()) {
+    			if(type.equals(attack.getType())) {
+    				typeEqual = true;
+    			}
+    		}
+    		if(typeEqual) {
+    			damageResult = attack.getAtt() / 2;
+    		} else {
+    			damageResult = attack.getAtt();
+    		}
+		} else {
+    		damageResult = attack.getAtt();
+		}
+    	return damageResult;
+    }
+    
     public void initView(Player player, VBox chomeurVBox) {
-    	player.addChomeur("Brigitte");
-    	player.addChomeur("macron");
+//    	player.addChomeur("Brigitte");
+//    	player.addChomeur("macron");
 
     	for(Chomeur chomeur : player.getChomeurs()) {
         	addMessage(chomeur.getString());

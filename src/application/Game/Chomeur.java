@@ -90,7 +90,6 @@ public class Chomeur {
 	
     public void FromFile(String filePath) {
 
-    	String nameAttack;
     	String newType;
     	
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -130,37 +129,16 @@ public class Chomeur {
                         	types.add(newType);
                             break;
                         case "attack1":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
+                        	newAttack(parts[1]);
                             break;
                         case "attack2":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                        		System.out.println(nameAttack);
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
+                        	newAttack(parts[1]);
                             break;
                         case "attack3":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
+                        	newAttack(parts[1]);
                             break;
                         case "attack4":
-                        	nameAttack = parts[1];
-                        	if(!nameAttack.equals("none")) {
-                            	Attack newAttack = new Attack();
-                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack + ".txt").toString());
-                            	attacks.add(newAttack);
-                        	}
+                        	newAttack(parts[1]);
                             break;
                     }
                 }
@@ -168,6 +146,14 @@ public class Chomeur {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void newAttack(String nameAttack) {
+    	if(!nameAttack.equals("none")) {
+        	Attack newAttack = new Attack();
+        	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
+        	attacks.add(newAttack);
+    	}
     }
     
     public String getString() {
@@ -195,7 +181,6 @@ public class Chomeur {
     
     public void fromTeam(String filePath, int numberChomeur) {
 
-    	String nameAttack;
     	boolean isValid = true;
     	int chunkSize = 7; // Taille du bloc
     	
@@ -217,38 +202,16 @@ public class Chomeur {
 	                            setStat(name);
 	                            break;
 	                        case "attack1":
-	                        	nameAttack = parts[1];
-	                        	if(!nameAttack.equals("none")) {
-	                            	Attack newAttack = new Attack();
-	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
-	                            	attacks.add(newAttack);
-	                        	}
+	                        	newAttack(parts[1]);
 	                            break;
 	                        case "attack2":
-	                        	nameAttack = parts[1];
-	                        	if(!nameAttack.equals("none")) {
-	                        		System.out.println(nameAttack);
-	                            	Attack newAttack = new Attack();
-	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
-	                            	attacks.add(newAttack);
-	                        	}
+	                        	newAttack(parts[1]);
 	                            break;
 	                        case "attack3":
-	                        	nameAttack = parts[1];
-	                        	if(!nameAttack.equals("none")) {
-	                            	Attack newAttack = new Attack();
-	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
-	                            	attacks.add(newAttack);
-	                        	}
+	                        	newAttack(parts[1]);
 	                            break;
 	                        case "attack4":
-	                        	nameAttack = parts[1];
-	                        	if(!nameAttack.equals("none")) {
-	                            	Attack newAttack = new Attack();
-	                            	newAttack.FromFile(Paths.get(System.getProperty("user.dir"), "src", "assets", "attacks", nameAttack).toString());
-	                            	attacks.add(newAttack);
-	                            	isValid = false;
-	                        	}
+	                        	newAttack(parts[1]);
 	                            break;
 	                    }
                 	}
