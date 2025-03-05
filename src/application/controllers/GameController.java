@@ -238,7 +238,8 @@ public class GameController {
 	     for (Chomeur  chomeur : arrayListChomeur) {
              Button button = new Button(chomeur.getName() + " " + chomeur.getHp() + "/" + chomeur.getHpMax() ); // Crée un bouton avec le nom
              button.setOnAction(event -> {
-            	 player1 = new Player(arrayListChomeur, arrayListChomeur.indexOf(chomeur));
+//            	 player1 = new Player(arrayListChomeur, arrayListChomeur.indexOf(chomeur));
+            	 player1.setChomeurActif(arrayListChomeur.indexOf(chomeur));
             	 initPlayer(player1, chomeur1);
             	 displayTeam();
              }); // Ajouter un gestionnaire d'événements
@@ -246,28 +247,4 @@ public class GameController {
          }
     }
    	 
-//   	 String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team.txt").toString();
-//   	 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-//            String ligne;
-//            while ((ligne = br.readLine()) != null) {
-//           	 if (ligne.startsWith("name=")) {
-//                    // Extraire la partie après "name="
-//                    String nom = ligne.substring(5); // 5 = longueur de "name="
-//                    noms.add(nom);
-//           	 }
-//            }
-//           
-//            for (String nom : noms) {
-//           	 String filename = nom.replace(".txt", "");  // Supprime ".txt"
-//                Button button = new Button(filename); // Crée un bouton avec le nom
-//                button.setOnAction(event -> {
-//                    System.out.println(filename + " a été cliqué !");
-//                }); // Ajouter un gestionnaire d'événements
-//                listChomeur.getChildren().add(button); // Ajout du bouton au VBox
-//            }
-//            
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//   }
 }

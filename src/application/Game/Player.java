@@ -17,12 +17,14 @@ public class Player {
 	public Player() {
 		chomeurs = new ArrayList<>();
 		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team" + ".txt").toString();
+		if (getNumberChomeur(path) == 0) {
+			path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "random" + ".txt").toString();}
 		addTeam(path);	
 	}
-	public Player(List<Chomeur> chomeurs, int chomeurActif) {
-		this.chomeurs = chomeurs;
-		this.chomeurActif = chomeurActif;
-	}
+//	public Player(List<Chomeur> chomeurs, int chomeurActif) {
+//		this.chomeurs = chomeurs;
+//		this.chomeurActif = chomeurActif;
+//	}
 	
 	public void addTeam(String path) {
 		int numberChomeur = getNumberChomeur(path);
@@ -101,7 +103,7 @@ public class Player {
 	                        case "name":
 	                            String name = parts[1];
 	                            chomeur.setName(name);
-	                            chomeur.FromFile(chomeurPath+"/"+name);
+	                            chomeur.setStat(parts[1]);
 	                            chomeur.clearAttacks();	                            
 	                            break;
 	                        case "item":

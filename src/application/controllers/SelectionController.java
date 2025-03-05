@@ -15,6 +15,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.io.BufferedReader;
@@ -312,11 +314,12 @@ public class SelectionController {
     private void handleClear() {
     	team = "";
     	addChomeur("");
+    	displayTeam();
     }
     
     @FXML
     private void handleRandom(ActionEvent event) {
-        navigateTo(event, "/views/Game.fxml", "Game");
+    	navigateTo(event, "/views/Game.fxml", "Game");
     }
     
     @FXML

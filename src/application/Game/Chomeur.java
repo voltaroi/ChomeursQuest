@@ -277,7 +277,7 @@ public class Chomeur {
     	attacks.clear();
     }
     
-    private void setStat(String nametxt) {
+    public void setStat(String nametxt) {
     	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "chomeurs", nametxt).toString();
     try (BufferedReader br = new BufferedReader(new FileReader(path))) {
         String line;
