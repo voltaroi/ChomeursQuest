@@ -18,7 +18,6 @@
         <HBox spacing="80" alignment="CENTER">
             <Button text="Play" onAction="#handlePlay"/>
             <Button text="Options" onAction="#handleOption"/>
-            <Button text="Game" onAction="#handleGame"/>
             <Button text="tuto" onAction="#handleTuto"/>
         </HBox>
     </VBox>

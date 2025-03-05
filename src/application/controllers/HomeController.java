@@ -39,12 +39,6 @@ public class HomeController {
         navigateTo(event, "/views/Option.fxml", "Options");
     }
     
-    // Méthode pour aller vers Game.fxml
-    @FXML
-    private void handleGame(ActionEvent event) {
-        navigateTo(event, "/views/Game.fxml", "Game");
-    }
-    
     // Méthode pour aller vers Tuto.fxml
     @FXML
     private void handleTuto(ActionEvent event) {

@@ -230,24 +230,24 @@ public class SelectionController {
     private void handleAdd() {
     	String chomeur = chomeurComboBox.getValue();
     	String item = itemComboBox.getValue();
-        String attack1 = attack1ComboBox.getValue();
-        String attack2 = attack2ComboBox.getValue();
-        String attack3 = attack3ComboBox.getValue();
-        String attack4 = attack4ComboBox.getValue();
+        String attack1 = attack1ComboBox.getValue()!= "" ? attack1ComboBox.getValue() : "none";
+        String attack2 = attack2ComboBox.getValue()!= "" ? attack2ComboBox.getValue() : "none";
+        String attack3 = attack3ComboBox.getValue()!= "" ? attack3ComboBox.getValue() : "none";
+        String attack4 = attack4ComboBox.getValue()!= "" ? attack4ComboBox.getValue() : "none";
 
         if (numberChomeurTeam > 5) {
         	showAlert("erreur", "impossible d'ajouter plus de 6 chomeurs");
         	return;
         }
         if (chomeur == null || item == null || attack1 == null || attack2 == null || attack3 == null || attack4 == null) {
-            showAlert("Erreur", "Veuillez sélectionner un chomeur, un objet et toutes les attaques.");
+            showAlert("Erreur", "Veuillez sélectionner un chomeur et un objet.");
         } else {
             showAlert("chomeur sélected = " + chomeur  + "\n" ,
             	"item selected = " + item  + "\n" +
-                "Attack 1 = " + attack1 + "\n" +
-                "Attack 2 = " + attack2 + "\n" +
-                "Attack 3 = " + attack3 + "\n" +
-                "Attack 4 = " + attack4);
+                "Attack1=" + attack1 + "\n" +
+                "Attack2=" + attack2 + "\n" +
+                "Attack3=" + attack3 + "\n" +
+                "Attack4=" + attack4);
             numberChomeurTeam ++;
             addChomeur("\n"+
             "name=" + chomeur + "\n" + 
