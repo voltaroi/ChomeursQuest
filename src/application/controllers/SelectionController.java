@@ -230,10 +230,10 @@ public class SelectionController {
     private void handleAdd() {
     	String chomeur = chomeurComboBox.getValue();
     	String item = itemComboBox.getValue();
-        String attack1 = attack1ComboBox.getValue();
-        String attack2 = attack2ComboBox.getValue();
-        String attack3 = attack3ComboBox.getValue();
-        String attack4 = attack4ComboBox.getValue();
+        String attack1 = attack1ComboBox.getValue()!=null ? attack1ComboBox.getValue() : "none";
+        String attack2 = attack2ComboBox.getValue()!=null ? attack2ComboBox.getValue() : "none";
+        String attack3 = attack3ComboBox.getValue()!=null ? attack3ComboBox.getValue() : "none";
+        String attack4 = attack4ComboBox.getValue()!=null ? attack4ComboBox.getValue() : "none";
 
         if (numberChomeurTeam > 5) {
         	showAlert("erreur", "impossible d'ajouter plus de 6 chomeurs");

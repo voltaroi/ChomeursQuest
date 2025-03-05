@@ -105,7 +105,7 @@ public class Player {
 	                            chomeur.clearAttacks();	                            
 	                            break;
 	                        case "item":
-	                        	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "items", parts[1] + ".txt").toString();
+	                        	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "items", parts[1]).toString();
 	                        	Item newItem = new Restes();
 	                        	newItem.FromFile(path);
 	                        	chomeur.setItem(newItem);
