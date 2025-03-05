@@ -139,6 +139,7 @@ public class GameController {
 		
 		initChomeur(chomeurEnemy, vbox);
 		initAttack(this.player1);
+		displayTeam();
     }
     
     public void attackEffect(Chomeur chomeurEnemy, Attack attack) {
