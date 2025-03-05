@@ -33,22 +33,10 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Chomeur's Quest");
         primaryStage.show();
-        String path = Paths.get(System.getProperty("user.dir"), "resources", "sound" , "Pokemon.wav").toString();
-        playSound(path);
         
-    }
-    
-    public static void playSound(String filePath) {
-        try {
-            File soundFile = new File(filePath);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY); // Joue en boucle
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-            ex.printStackTrace();
-        }
+        String path = Paths.get(System.getProperty("user.dir"), "resources", "sound" , "Pokemon.wav").toString();
+        new SoundManager(path);
+        
     }
 
     public static void main(String[] args) {
