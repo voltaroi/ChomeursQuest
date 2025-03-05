@@ -4,11 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public abstract class Item {
+public class Item {
 	private String name;
 	private String effect;
 	private float value;
-	protected boolean oneAction = true;
 	
 	public void setName(String newName) {
 		name = newName;
@@ -58,6 +57,4 @@ public abstract class Item {
             e.printStackTrace();
         }
     }
-    
-    public abstract Chomeur actuEffect(Chomeur chomeur);
 }
