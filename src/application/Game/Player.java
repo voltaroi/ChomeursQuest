@@ -21,10 +21,11 @@ public class Player {
 			path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "random" + ".txt").toString();}
 		addTeam(path);	
 	}
-//	public Player(List<Chomeur> chomeurs, int chomeurActif) {
-//		this.chomeurs = chomeurs;
-//		this.chomeurActif = chomeurActif;
-//	}
+
+	public void updateItem() {
+		Chomeur chomeur = getChomeurActif();
+		chomeur.updateItem(chomeur);
+	}
 	
 	public void addTeam(String path) {
 		int numberChomeur = getNumberChomeur(path);

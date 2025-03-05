@@ -118,6 +118,7 @@ public class GameController {
         Attack attack = attacks.get(randomIndex);
         attack(attack.getName(), player2, player1, chomeur1);
         round = true;
+        player2.updateItem();
     }
     
     public void attack(String attackName, Player player, Player player2 , VBox vbox) {
