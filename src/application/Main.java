@@ -35,8 +35,7 @@ public class Main extends Application {
         primaryStage.show();
         
         String path = Paths.get(System.getProperty("user.dir"), "resources", "sound" , "Pokemon.wav").toString();
-        new SoundManager(path);
-        
+        new SoundManager(path, -20.0f);
     }
 
     public static void main(String[] args) {

@@ -8,10 +8,15 @@ public class SoundManager {
     private static Clip clip;
     private static FloatControl volumeControl;
     
-    public SoundManager(String filePath) {
+    public SoundManager(String filePath, float f) {
     	playSound(filePath);
-    	setVolume(-20.0f);
+    	setVolume(f);
     }
+    
+    public SoundManager() {
+    	stopSound();
+    }
+    
     public static void playSound(String filePath) {
         try {
             // Arrêter le son en cours si nécessaire
@@ -51,7 +56,6 @@ public class SoundManager {
         if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.close();
-            System.out.println("Son arrêté.");
         }
     }
 }

@@ -9,8 +9,16 @@ import javafx.scene.Node;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.nio.file.Paths;
+
+import application.SoundManager;
 
 public class OptionController {
+	
+	@FXML
+	private void handleStop() {
+        new SoundManager();
+	}
 	
     @FXML
     private void handleBack(ActionEvent event) {
