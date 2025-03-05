@@ -256,10 +256,19 @@ public class GameController {
 	     for (Chomeur  chomeur : arrayListChomeur) {
              Button button = new Button(chomeur.getName() + " " + chomeur.getHp() + "/" + chomeur.getHpMax() ); // Crée un bouton avec le nom
              button.setOnAction(event -> {
-//            	 player1 = new Player(arrayListChomeur, arrayListChomeur.indexOf(chomeur));
-            	 player1.setChomeurActif(arrayListChomeur.indexOf(chomeur));
-            	 initPlayer(player1, chomeur1);
-            	 displayTeam();
+             	if(round) {
+             		if(player1.getChomeurActif() != chomeur) {
+                		round = false;
+	   	               	player1.setChomeurActif(arrayListChomeur.indexOf(chomeur));
+	   	               	initPlayer(player1, chomeur1);
+	   	               	displayTeam();
+	               		
+	               		attackEnemy();
+             		}
+            		
+            	} else {
+            		addMessage("Ce n'est pas ton tour");
+            	}
              }); // Ajouter un gestionnaire d'événements
              listChomeur.getChildren().add(button); // Ajout du bouton au VBox
          }
