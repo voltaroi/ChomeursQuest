@@ -106,7 +106,7 @@ public class Player {
 	                            break;
 	                        case "item":
 	                        	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "items", parts[1] + ".txt").toString();
-	                        	Item newItem = new Item();
+	                        	Item newItem = new Restes();
 	                        	newItem.FromFile(path);
 	                        	chomeur.setItem(newItem);
 	                        	break;

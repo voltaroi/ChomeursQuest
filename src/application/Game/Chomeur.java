@@ -108,6 +108,10 @@ public class Chomeur {
 		return hp;
 	}
 	
+	public void setHp(float newHp) {
+		hp = newHp;
+	}
+	
 	public float getHpMax() {
 		return hpMax;
 	}
