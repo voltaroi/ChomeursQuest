@@ -9,6 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -27,6 +30,17 @@ public class TutoController {
     private TextArea textArea2;
     
     @FXML
+    private ImageView imageView; // Liaison avec l'ImageView du FXML
+    
+    private Stage stage; // Référence à la fenêtre principale
+    
+    private String uri;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @FXML
     private void initialize() {
         // Texte avec des sauts de ligne
         String text1 = "name=Macron" + System.lineSeparator() +
@@ -42,7 +56,9 @@ public class TutoController {
                       "attack2=none" + System.lineSeparator() +
                       "attack3=none" + System.lineSeparator() +
                       "attack4=none" + System.lineSeparator() +
-                      "listAttackSpe=test1.txt test2.txt";
+                      "listAttackSpe=test1.txt test2.txt" + System.lineSeparator() +
+                      "uri=" + uri;
+                      
 
         // Affichage dans le TextArea1
         textArea1.setText(text1);
@@ -135,6 +151,7 @@ public class TutoController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    
     @FXML
     private void handleBack(ActionEvent event) {
         try {
@@ -151,5 +168,41 @@ public class TutoController {
             e.printStackTrace();
             System.err.println("Erreur lors du retour à l'accueil.");
         }
+    }
+    
+    // Méthode appelée lorsque l'utilisateur clique sur "Select Image"
+    @FXML
+    private void selectImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select an Image");
+
+        // Filtrer pour ne montrer que les images
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        // Ouvrir le sélecteur de fichier
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            try {
+                // Charger et afficher l'image sélectionnée
+                Image image = new Image(selectedFile.toURI().toString());
+                imageView.setImage(image);
+                uri = selectedFile.getAbsolutePath();
+                initialize();
+               // System.out.println("Image loaded: " + selectedFile.getAbsolutePath());
+            } catch (Exception e) {
+                showError("Error loading image", e.getMessage());
+            }
+        }
+    }
+
+    // Afficher une alerte en cas d'erreur
+    private void showError(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
