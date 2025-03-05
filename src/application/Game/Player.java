@@ -17,9 +17,13 @@ public class Player {
 	public Player() {
 		chomeurs = new ArrayList<>();
 		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team" + ".txt").toString();
-		addTeam(path);
-		
+		addTeam(path);	
 	}
+	public Player(List<Chomeur> chomeurs, int chomeurActif) {
+		this.chomeurs = chomeurs;
+		this.chomeurActif = chomeurActif;
+	}
+	
 	public void addTeam(String path) {
 		int numberChomeur = getNumberChomeur(path);
 		for (int i = 0; i < numberChomeur; i++) {
@@ -53,13 +57,9 @@ public class Player {
 	}
 	
 	public int getNumberChomeurActif() {
-		return chomeurs.indexOf(chomeurs.get(chomeurActif));
+		return chomeurActif;
 	}
-	
-	public int getNumberChomeur(Chomeur chomeur) {
-		return chomeurs.indexOf(chomeur);
-	}
-	
+		
 	public void setChomeurActif(int num) {// entre 0 et 5
 		chomeurActif = num;
 	}

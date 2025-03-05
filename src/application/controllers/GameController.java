@@ -233,15 +233,11 @@ public class GameController {
     
     private void displayTeam() {
 	   	 listChomeur.getChildren().clear();
-	   	 List<Chomeur> ArrayListChomeur = player1.getChomeurs();
-	     for (Chomeur  chomeur : ArrayListChomeur) {
-	    	 if (chomeur == player1.getChomeurActif()) {continue;}
-             Button button = new Button(chomeur.getName()); // Crée un bouton avec le nom
+	   	 List<Chomeur> arrayListChomeur = player1.getChomeurs();
+	     for (Chomeur  chomeur : arrayListChomeur) {
+             Button button = new Button(chomeur.getName() + " " + chomeur.getHp() + "/" + chomeur.getHpMax() ); // Crée un bouton avec le nom
              button.setOnAction(event -> {
-            	 player1.addChomeur(player1.getChomeurActif());
-            	 player1.setChomeurActif(player1.getNumberChomeur(chomeur));
-            	 System.out.println(chomeur.getName() + " a été cliqué !");
-            	 player1.removeChomeur(chomeur);
+            	 player1 = new Player(arrayListChomeur, arrayListChomeur.indexOf(chomeur));
             	 initPlayer(player1, chomeur1);
             	 displayTeam();
              }); // Ajouter un gestionnaire d'événements
