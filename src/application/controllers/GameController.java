@@ -1,5 +1,6 @@
 package application.controllers;
 
+import java.io.File;
 import java.util.List;
 
 import application.Game.Attack;
@@ -19,6 +20,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class GameController {
 	
@@ -211,6 +214,21 @@ public class GameController {
     public void initChomeur(Chomeur chomeur, VBox chomeurVBox) {
     	chomeurVBox.getChildren().clear();
         drawText(chomeur.getName(), chomeurVBox);
+        System.out.println(chomeur.getUri());
+        Image image = new Image(getClass().getResource("/images/background.jpeg").toExternalForm());
+        if (!chomeur.getUri().isEmpty()) {
+        	File file = new File(chomeur.getUri());
+            String uri = file.toURI().toString();
+        image = new Image(uri);}
+        
+    	ImageView img = new ImageView(image);
+    	// Définir la taille de l'image
+        img.setFitWidth(300);  // Largeur en pixels
+        img.setFitHeight(200); // Hauteur en pixels
+
+        // Optionnel : Préserver le rapport hauteur/largeur (empêche la déformation)
+        img.setPreserveRatio(true);
+    	chomeurVBox.getChildren().add(img);
         addProgressBar(chomeur.getHp(), chomeur.getHpMax(), chomeurVBox);
     }
     

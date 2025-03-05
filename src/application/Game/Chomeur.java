@@ -17,6 +17,7 @@ public class Chomeur {
 	private float def;
 	private float defSpe;
 	private float speed;
+	private String uri;
 	
 	private Item item;
 	
@@ -33,6 +34,10 @@ public class Chomeur {
 	
 	public Item getItem() {
 		return item;
+	}
+	
+	public String getUri() {
+		return uri;
 	}
 	
 	public void setItem(Item newItem) {
@@ -234,6 +239,9 @@ public class Chomeur {
                         case "attack4":
                         	newAttack(parts[1]);
                             break;
+                        case "uri":
+                        	uri = parts[1];
+                            break;
                     }
                 }
             }
@@ -315,6 +323,9 @@ public class Chomeur {
                     case "type2":
                     	newType = parts[1];
                     	types.add(newType);
+                        break;
+                    case "uri":
+                    	uri = parts[1];
                         break;
     
                 }
