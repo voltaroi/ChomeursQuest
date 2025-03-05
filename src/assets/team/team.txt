@@ -1,22 +1,22 @@
 
-name=Brigitte.txt
+name=macron.txt
 item=armor.txt
 attack1=attackTest.txt
-attack2=
-attack3=test1.txt
-attack4=
+attack2=attackTest.txt
+attack3=none
+attack4=none
 
-name=Brigitte.txt
+name=macron.txt
 item=armor.txt
 attack1=attackTest.txt
-attack2=test2.txt
-attack3=test1.txt
-attack4=
+attack2=attackTest.txt
+attack3=none
+attack4=none
 
-name=Brigitte.txt
+name=macron.txt
 item=armor.txt
 attack1=attackTest.txt
-attack2=test2.txt
-attack3=test1.txt
-attack4=test2.txt
+attack2=attackTest.txt
+attack3=none
+attack4=none
 
