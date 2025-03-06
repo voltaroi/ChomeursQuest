@@ -19,6 +19,7 @@
 		        <HBox alignment="BOTTOM_RIGHT" spacing="5" fx:id="attackHBox2"/>
 		        
 		    </VBox>
+		    <VBox fx:id="effect" alignment="CENTER" spacing="5"/>
 		    <VBox fx:id="chomeur2" alignment="TOP_RIGHT" spacing="5"/>
 		</StackPane>
 		
