@@ -1,0 +1,7 @@
+name=manifestation
+isAttackSpe=true
+att=30
+type=francais
+effect=stun
+effectTime=2
+effectDamage=0

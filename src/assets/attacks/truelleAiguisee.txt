@@ -1,0 +1,7 @@
+name=truelleAiguisee
+isAttackSpe=true
+att=30
+type=portugais
+effect=none
+effectTime=2
+effectDamage=0

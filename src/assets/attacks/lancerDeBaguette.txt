@@ -1,0 +1,7 @@
+name=lancerDeBaguette
+isAttackSpe=true
+att=30
+type=francais
+effect=none
+effectTime=2
+effectDamage=0

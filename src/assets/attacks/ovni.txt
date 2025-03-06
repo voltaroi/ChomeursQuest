@@ -1,0 +1,7 @@
+name=ovni
+isAttackSpe=true
+att=50
+type=platiste
+effect=none
+effectTime=2
+effectDamage=0

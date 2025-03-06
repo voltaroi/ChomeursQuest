@@ -1,0 +1,7 @@
+name=blagueDeTonton
+isAttackSpe=true
+att=30
+type=portugais
+effect=confusedYou
+effectTime=2
+effectDamage=0

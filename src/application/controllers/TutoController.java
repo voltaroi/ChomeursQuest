@@ -52,10 +52,6 @@ public class TutoController {
                       "speed=1" + System.lineSeparator() +
                       "type1=politique" + System.lineSeparator() +
                       "type2=none" + System.lineSeparator() +
-                      "attack1=attackTest" + System.lineSeparator() +
-                      "attack2=none" + System.lineSeparator() +
-                      "attack3=none" + System.lineSeparator() +
-                      "attack4=none" + System.lineSeparator() +
                       "listAttackSpe=test1.txt test2.txt" + System.lineSeparator() +
                       "uri=" + uri;
                       

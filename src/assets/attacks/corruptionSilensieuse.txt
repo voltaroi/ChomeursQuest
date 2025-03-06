@@ -1,0 +1,7 @@
+name=corruptionSilensieuse
+isAttackSpe=true
+att=50
+type=politique
+effect=attDef
+effectTime=2
+effectDamage=2

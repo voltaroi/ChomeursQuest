@@ -1,7 +1,0 @@
-name=attackTest
-isAttackSpe=false
-att=3
-type=neutre
-effect=stun
-effectTime=2
-effectDamage=0

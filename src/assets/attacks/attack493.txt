@@ -1,0 +1,7 @@
+name=attack493
+isAttackSpe=true
+att=50
+type=politique
+effect=stun
+effectTime=2
+effectDamage=0

@@ -1,0 +1,7 @@
+name=malefique5G
+isAttackSpe=true
+att=50
+type=platiste
+effect=poison
+effectTime=2
+effectDamage=0
