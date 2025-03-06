@@ -40,8 +40,8 @@ public class Chomeur {
 		return uri;
 	}
 	
-	public void updateItem(Chomeur chomeur) {
-		item.actuEffect(chomeur);
+	public Chomeur updateItem(Chomeur chomeur) {
+		return item.actuEffect(chomeur);
 	}
 	
 	public void setItem(Item newItem) {
