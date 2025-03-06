@@ -8,6 +8,7 @@ import application.Game.Attack;
 import application.Game.Chomeur;
 import application.Game.Effect;
 import application.Game.Player;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -23,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class GameController {
 	
@@ -38,6 +40,9 @@ public class GameController {
     
     @FXML
 	private VBox chomeur2;
+    
+    @FXML
+   	private VBox effect;
     
     @FXML
     private HBox attackHBox1;
@@ -167,6 +172,8 @@ public class GameController {
 		initChomeur(chomeurEnemy, vbox);
 		initAttack(this.player1);
 		displayTeam();
+        displayEffet();
+		
     }
     
     public void attackEffect(Chomeur chomeurEnemy, Attack attack) {
@@ -275,6 +282,23 @@ public class GameController {
  // Méthode pour charger l'image par défaut
     private Image getDefaultImage() {
         return new Image(getClass().getResource("/images/background.jpeg").toExternalForm());
+    }
+    
+    //méthode ajouter effet d'attaque
+    private void displayEffet() {
+    	 // Charger l'image
+        Image image = loadImage("/images/effet.png");
+        ImageView imageView = new ImageView(image);
+        
+        effect.getChildren().add(imageView);
+
+        // Supprimer l'image après 1 seconde
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        pause.setOnFinished(event -> {
+            // Effacer la zone où l'image était dessinée
+            effect.getChildren().clear();
+        });
+        pause.play();
     }
     
  // Méthode pour charger une image locale ou depuis le classpath
