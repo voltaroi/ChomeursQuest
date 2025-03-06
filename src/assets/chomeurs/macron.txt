@@ -7,5 +7,5 @@ defSpe=4
 speed=1
 type1=politique
 type2=none
-listAttackSpe=test1.txt test2.txt
+listAttackSpe=attack493.txt corruptionSilencieuse.txt contradiction.txt faussePromesse.txt
 uri=/images/macron.png
