@@ -1,15 +1,6 @@
 package application;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import javax.sound.sampled.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,15 +12,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-    	// Charger le fichier FXML correctement
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Home.fxml"));
-        Parent root = loader.load();  // Charge le layout depuis FXML
 
-        
-        // Créer une scène avec le VBox comme racine
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Home.fxml"));
+        Parent root = loader.load();
+
         Scene scene = new Scene(root, 600, 600);
         
-        // Définir la scène sur le stage et afficher
         primaryStage.setScene(scene);
         primaryStage.setTitle("Chomeur's Quest");
         primaryStage.show();
@@ -41,4 +29,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
 }

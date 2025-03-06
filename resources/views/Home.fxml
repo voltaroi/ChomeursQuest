@@ -15,10 +15,13 @@
     <!-- VBox pour superposer les éléments -->
     <VBox spacing="40" alignment="TOP_CENTER">
         <Label text="Chomeur's Quest!" style="-fx-text-fill: white; -fx-font-size: 40px;"/>
-        <HBox spacing="80" alignment="CENTER">
-            <Button text="Play" onAction="#handlePlay"/>
-            <Button text="Options" onAction="#handleOption"/>
+        <VBox spacing="20" alignment="CENTER">
+            <Button text="Host" onAction="#handleHost"/>
+            <Button text="Join" onAction="#handleJoin"/>
+            <Button text="Solo" onAction="#handlePlay"/>
             <Button text="tuto" onAction="#handleTuto"/>
-        </HBox>
+            <Button text="Options" onAction="#handleOption"/>
+            <Button text="Quit" onAction="#handleQuit"/>
+        </VBox>
     </VBox>
 </StackPane>

@@ -4,15 +4,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import net.GameClient;
+import net.GameServer;
 import javafx.scene.Parent;
 import javafx.scene.Node;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
+import application.Globals;
+
 public class HomeController {
+	
+	private GameClient socketClient;
+	private GameServer socketServer;
 	
     @FXML
     private ImageView backgroundImage;  // L'ImageView défini dans FXML
@@ -25,6 +33,38 @@ public class HomeController {
             
         backgroundImage.setImage(image); // Appliquer l'image de fond à l'ImageView
        
+    }
+    
+    @FXML
+    private void handleHost(ActionEvent event) {
+    	socketServer = new GameServer();
+		socketServer.start();
+		
+		Globals.setIsMulti(true);
+		Globals.setIsServer(true);
+		
+        navigateTo(event, "/views/Selection.fxml", "Sélection");
+    }
+    
+    @FXML
+    private void handleJoin(ActionEvent event) {
+
+		socketClient = new GameClient("localhost");
+		socketClient.start();
+		
+		Globals.setIsMulti(true);
+		
+		socketClient.sendData("ping", 1);
+	    navigateTo(event, "/views/Selection.fxml", "Sélection");
+	    socketClient.sendData("join", 0);
+    }
+    
+    @FXML
+    private void handleQuit(ActionEvent event) {
+    	if(Globals.getIsServer()) {
+    		socketServer.stopServer();
+    	}
+        Platform.exit();
     }
     
     // Méthode pour aller vers Selection.fxml

@@ -23,6 +23,7 @@ public class GameServer extends Thread{
 	}
 	
 	public void run() {
+		System.out.println(Globals.getIsServer());
 	    while (true) {
 	        byte[] data = new byte[1024];
 	        DatagramPacket packet = new DatagramPacket(data, data.length);

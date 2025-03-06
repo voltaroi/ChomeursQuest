@@ -3,6 +3,7 @@ package application.controllers;
 import java.io.File;
 import java.util.List;
 
+import application.Globals;
 import application.Game.Attack;
 import application.Game.Chomeur;
 import application.Game.Effect;
@@ -61,6 +62,12 @@ public class GameController {
     @FXML
     public void initialize() {
     	
+    	if(Globals.getIsMulti()) {
+    		if(Globals.getSecondePlayerConnected()) {
+    			System.out.print("seconde player connected");
+    		}
+    	}
+    	
     	gc = myCanvas.getGraphicsContext2D();
     	myCanvas.setMouseTransparent(true);
     	chomeur1.setMouseTransparent(true);
@@ -113,6 +120,8 @@ public class GameController {
     }
 
     public void buttonAttack(String attackName) { 
+    	if()
+    	
     	if(round) {
     		
     		round = false;
@@ -327,7 +336,7 @@ public class GameController {
             System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
         }
 
-        return null; // Retourne null si aucune image valide n'a été trouvée
+        return null;
     }
     
     public void addMessage(String message) {
