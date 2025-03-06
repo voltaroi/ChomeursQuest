@@ -3,7 +3,7 @@ package application.controllers;
 import java.io.File;
 import java.util.List;
 
-import application.Globals;
+import application.GameInstance;
 import application.Game.Attack;
 import application.Game.Chomeur;
 import application.Game.Effect;
@@ -55,15 +55,13 @@ public class GameController {
     private Player player1 = new Player("Player 1");
     private Player player2 = new Player("Player 2");
     
-    private boolean round = true;
-    
     private boolean endGame = false;
     
     @FXML
     public void initialize() {
     	
-    	if(Globals.getIsMulti()) {
-    		if(Globals.getSecondePlayerConnected()) {
+    	if(GameInstance.getIsMulti()) {
+    		if(GameInstance.getSecondePlayerConnected()) {
     			System.out.print("seconde player connected");
     		}
     	}
@@ -73,15 +71,11 @@ public class GameController {
     	chomeur1.setMouseTransparent(true);
     	chomeur2.setMouseTransparent(true);
     	effect.setMouseTransparent(true);
-
-    	//gc.setFill(Color.LIGHTBLUE);
     	
         gc.fillRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
         
-        // Charger l'image (depuis le dossier resources ou un chemin absolu)
         Image backgroundImage = loadImage("/images/arene.jpg");
 
-        // Dessiner l'image en fond (0, 0 = coin supérieur gauche)
         gc.drawImage(backgroundImage, 0, 0, myCanvas.getWidth(), myCanvas.getHeight());
         
         initPlayer(player1, chomeur1);
@@ -120,17 +114,15 @@ public class GameController {
     }
 
     public void buttonAttack(String attackName) { 
-    	if()
-    	
-    	if(round) {
-    		
-    		round = false;
-    		attack(attackName, player1, player2, chomeur2);		
-    		
-    		attackEnemy();
-    		
-    	} else {
-    		addMessage("Ce n'est pas ton tour");
+    	if(!GameInstance.getIsMulti()) {
+        	if(GameInstance.getRound()) {
+        		
+        		GameInstance.setRound(false);
+        		attack(attackName, player1, player2, chomeur2);		
+        		
+        		attackEnemy();
+        		
+        	}
     	}
     }
     
@@ -138,7 +130,6 @@ public class GameController {
         try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         Chomeur chomeur = player2.getChomeurActif();
@@ -147,10 +138,10 @@ public class GameController {
         int randomIndex = (int) Math.floor(Math.random() * attacks.size());
         Attack attack = attacks.get(randomIndex);
         attack(attack.getName(), player2, player1, chomeur1);
-        round = true;
+        GameInstance.setRound(true);
         
-//        player1.updateItem();
-//        player2.updateItem();
+        player1.updateItem();
+        player2.updateItem();
     }
     
     public void attack(String attackName, Player player, Player player2 , VBox vbox) {
@@ -169,17 +160,26 @@ public class GameController {
     		for(int i = 0; i < chomeur.getEffects().size(); i++) {
     			Effect effect = chomeur.getEffects().get(i);
     			
-        		if(effect.equals("confusedMe")){
-        			chomeur.modifHp((damageResult / 8));
-        		} else if(effect.equals("confusedYou")){
-        			chomeurEnemy.modifHp((damageResult / 8));
-        		} else if(effect.equals("attDef")) {
-        			chomeur.modifAtt(effect.getDamage());
-        		} else if(effect.equals("def")) {
-        			chomeur.modifDef(effect.getDamage());
-        		}  else if(effect.equals("defYou")) {
-        			chomeurEnemy.modifDef(effect.getDamage());
-        		}
+    			switch (effect.getName()) {
+    		    case "confusedMe":
+    		        chomeur.modifHp(damageResult / 8);
+    		        break;
+    		    case "confusedYou":
+    		        chomeurEnemy.modifHp(damageResult / 8);
+    		        break;
+    		    case "attDef":
+    		        chomeur.modifAtt(effect.getDamage());
+    		        break;
+    		    case "def":
+    		        chomeur.modifDef(effect.getDamage());
+    		        break;
+    		    case "defYou":
+    		        chomeurEnemy.modifDef(effect.getDamage());
+    		        break;
+    		    default:
+    		        System.out.println("Effet inconnu : " + effect);
+    		}
+
     		}
     		addMessage("La " + chomeur.getName() + " de " + player.getName() + " fait " + damageResult + " avec "+ attackName);
     		attackEffect(chomeurEnemy, attack);
@@ -369,10 +369,10 @@ public class GameController {
 	     for (Chomeur  chomeur : arrayListChomeur) {
              Button button = new Button(chomeur.getName() + " " + chomeur.getHp() + "/" + chomeur.getHpMax() );
              button.setOnAction(event -> {
-             	if(round) {
+             	if(GameInstance.getRound()) {
              		if(player1.getChomeurActif() != chomeur) {
              			if(chomeur.getHp() > 0) {
-                    		round = false;
+                    		GameInstance.setRound(false);
     	   	               	player1.setChomeurActif(arrayListChomeur.indexOf(chomeur));
     	   	               	initPlayer(player1, chomeur1);
     	   	               	initAttack(player1);

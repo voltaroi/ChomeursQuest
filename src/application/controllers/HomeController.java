@@ -15,12 +15,9 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
-import application.Globals;
+import application.GameInstance;
 
 public class HomeController {
-	
-	private GameClient socketClient;
-	private GameServer socketServer;
 	
     @FXML
     private ImageView backgroundImage;  // L'ImageView défini dans FXML
@@ -37,11 +34,11 @@ public class HomeController {
     
     @FXML
     private void handleHost(ActionEvent event) {
-    	socketServer = new GameServer();
-		socketServer.start();
+    	GameInstance.startServer();
+		GameInstance.getServer().start();
 		
-		Globals.setIsMulti(true);
-		Globals.setIsServer(true);
+		GameInstance.setIsMulti(true);
+		GameInstance.setIsServer(true);
 		
         navigateTo(event, "/views/Selection.fxml", "Sélection");
     }
@@ -49,25 +46,24 @@ public class HomeController {
     @FXML
     private void handleJoin(ActionEvent event) {
 
-		socketClient = new GameClient("localhost");
-		socketClient.start();
+    	GameInstance.startClient();
+		GameInstance.getClient().start();
 		
-		Globals.setIsMulti(true);
+		GameInstance.setIsMulti(true);
 		
-		socketClient.sendData("ping", 1);
+		GameInstance.getClient().sendData("ping", 1);
 	    navigateTo(event, "/views/Selection.fxml", "Sélection");
-	    socketClient.sendData("join", 0);
+	    GameInstance.getClient().sendData("join", 0);
     }
     
     @FXML
     private void handleQuit(ActionEvent event) {
-    	if(Globals.getIsServer()) {
-    		socketServer.stopServer();
+    	if(GameInstance.getIsServer()) {
+    		GameInstance.getServer().stopServer();
     	}
         Platform.exit();
     }
     
-    // Méthode pour aller vers Selection.fxml
     @FXML
     private void handlePlay(ActionEvent event) {
         navigateTo(event, "/views/Selection.fxml", "Sélection");

@@ -2,7 +2,7 @@ package net;
 
 import org.json.JSONObject;
 
-import application.Globals;
+import application.GameInstance;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -23,7 +23,7 @@ public class GameServer extends Thread{
 	}
 	
 	public void run() {
-		System.out.println(Globals.getIsServer());
+		System.out.println(GameInstance.getIsServer());
 	    while (true) {
 	        byte[] data = new byte[1024];
 	        DatagramPacket packet = new DatagramPacket(data, data.length);
@@ -50,7 +50,7 @@ public class GameServer extends Thread{
 	            }
 	            
 	            if (message.trim().equalsIgnoreCase("join")) {
-	            	Globals.setSecondePlayerConnected(true);
+	            	GameInstance.setSecondePlayerConnected(true);
 	            }
 	        } catch (Exception e) {
 	            System.out.println("Erreur de parsing JSON : " + e.getMessage());

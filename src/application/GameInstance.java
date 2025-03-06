@@ -1,11 +1,27 @@
 package application;
 
-public class Globals {
+import net.GameClient;
+import net.GameServer;
+
+public class GameInstance {
 	
 	private static boolean isMulti = false;
 	private static boolean isServer = false;
 	
+	private static GameClient socketClient;
+	private static GameServer socketServer;
+	
 	private static boolean secondePlayerConnected = false;
+	
+	private static boolean round = true;
+	
+	public static void setRound(boolean newRound) {
+		round = newRound;
+	}
+	
+	public static boolean getRound() {
+		return round;
+	}
 	
 	public static void setIsMulti(boolean newIsMulti) {
 		isMulti = newIsMulti;
@@ -29,5 +45,21 @@ public class Globals {
 	
 	public static boolean getSecondePlayerConnected() {
 		return secondePlayerConnected;
+	}
+
+	public static void startServer() {
+		socketServer = new GameServer();
+	}
+	
+	public static GameServer getServer() {
+		return socketServer;
+	}
+	
+	public static void startClient() {
+		socketClient = new GameClient("localhost");
+	}
+	
+	public static GameClient getClient() {
+		return socketClient;
 	}
 }
