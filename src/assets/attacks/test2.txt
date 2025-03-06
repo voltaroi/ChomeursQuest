@@ -1,4 +1,4 @@
-name=test1
+name=test2
 isAttackSpe=true
 att=2
 type=politique
