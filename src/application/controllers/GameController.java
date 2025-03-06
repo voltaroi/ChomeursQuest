@@ -143,6 +143,21 @@ public class GameController {
 		
     	if(player.getChomeurActif().updateEffects()) {
     		damageResult = attackSpe(damageResult, attack, chomeur, chomeurEnemy);
+    		for(int i = 0; i < chomeur.getEffects().size(); i++) {
+    			Effect effect = chomeur.getEffects().get(i);
+    			
+        		if(effect.equals("confusedMe")){
+        			chomeur.modifHp(-(damageResult / 8));
+        		} else if(effect.equals("confusedYou")){
+        			chomeurEnemy.modifHp(-(damageResult / 8));
+        		} else if(effect.equals("attDef")) {
+        			chomeur.modifAtt(effect.getDamage());
+        		} else if(effect.equals("def")) {
+        			chomeur.modifDef(effect.getDamage());
+        		}  else if(effect.equals("defYou")) {
+        			chomeurEnemy.modifDef(-effect.getDamage());
+        		}
+    		}
     		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
     		attackEffect(chomeurEnemy, attack);
     	}

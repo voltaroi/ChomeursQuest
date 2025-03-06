@@ -95,6 +95,10 @@ public class Chomeur {
 		name = nameset;
 	}
 	
+	public List<Effect> getEffects(){
+		return effects;
+	}
+	
 	public boolean updateEffects() {
 		boolean canPlay = true;
 		for(int i=0; i < effects.size(); i++) {
@@ -105,6 +109,8 @@ public class Chomeur {
 				System.out.println(effects.get(i).getName());
 				if(effects.get(i).getName().equals("stun")) {
 					canPlay = false;
+				} else if(effects.get(i).getName().equals("poison")) {
+					modifHp(-effects.get(i).getDamage());
 				}
 			} else {
 				effects.remove(i);

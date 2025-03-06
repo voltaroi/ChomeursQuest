@@ -1,0 +1,11 @@
+name=Tila Tequila
+hp=12
+att=4
+attSpe=6
+def=3
+defSpe=4
+speed=1
+type1=platiste
+type2=none
+listAttackSpe=5G Malefique.txt OVNI.txt Paranoia.txt Preuve Youtube.txt
+uri=/image/Tila Tequila.png
