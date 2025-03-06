@@ -63,8 +63,15 @@ public class GameController {
     	chomeur1.setMouseTransparent(true);
     	chomeur2.setMouseTransparent(true);
 
-    	gc.setFill(Color.LIGHTBLUE);
+    	//gc.setFill(Color.LIGHTBLUE);
+    	
         gc.fillRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
+        
+        // Charger l'image (depuis le dossier resources ou un chemin absolu)
+        Image backgroundImage = loadImage("/images/arene.jpg");
+
+        // Dessiner l'image en fond (0, 0 = coin supérieur gauche)
+        gc.drawImage(backgroundImage, 0, 0, myCanvas.getWidth(), myCanvas.getHeight());
         
         initPlayer(player1, chomeur1);
         initPlayer(player2, chomeur2);
@@ -284,6 +291,12 @@ public class GameController {
     public void drawText(String text, VBox chomeurVBox) {
         Label label = new Label(text);
         label.setFont(new Font(20));
+        label.setStyle(
+            "-fx-background-color: lightblue;" +  // Couleur de fond
+            "-fx-background-radius: 20;" +        // Rayon des coins
+            "-fx-padding: 10;"                    // Marge interne
+        );
+
         chomeurVBox.getChildren().add(label);
     }
     

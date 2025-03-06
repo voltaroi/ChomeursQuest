@@ -12,4 +12,4 @@ attack2=none
 attack3=none
 attack4=none
 listAttackSpe=test1.txt test2.txt
-uri=/images/brigitte.jpeg
+uri=/images/brigitte.png
