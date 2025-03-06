@@ -34,30 +34,30 @@ public abstract class Item {
 		return value;
 	}
 	
-    public void FromFile(String filePath) {
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split("=");
-                if (parts.length == 2) {
-                    switch (parts[0]) {
-                        case "name":
-                            name = parts[1];
-                            break;
-                        case "effect":
-                            effect = parts[1];
-                            break;
-                        case "value":
-                            value = Float.parseFloat(parts[1]);
-                            break;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
+//    public void FromFile(String filePath) {
+//
+//        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                String[] parts = line.split("=");
+//                if (parts.length == 2) {
+//                    switch (parts[0]) {
+//                        case "name":
+//                            name = parts[1];
+//                            break;
+//                        case "effect":
+//                            effect = parts[1];
+//                            break;
+//                        case "value":
+//                            value = Float.parseFloat(parts[1]);
+//                            break;
+//                    }
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    
     public abstract Chomeur actuEffect(Chomeur chomeur);
 }

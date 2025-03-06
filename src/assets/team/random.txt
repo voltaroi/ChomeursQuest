@@ -1,22 +1,22 @@
 
 name=macron.txt
-item=healthPotion.txt
+item=OvniPicture.java
+attack1=attackTest.txt
+attack2=none
+attack3=none
+attack4=none
+
+name=Brigitte.txt
+item=Restes.java
 attack1=test1.txt
 attack2=none
 attack3=none
 attack4=none
 
 name=Brigitte.txt
-item=healthPotion.txt
-attack1=test2.txt
+item=Restes.java
+attack1=test1.txt
 attack2=none
 attack3=none
-attack4=none
-
-name=yoan.txt
-item=healthPotion.txt
-attack1=none
-attack2=none
-attack3=test.txt
 attack4=none
 

@@ -59,7 +59,7 @@ public class SelectionController {
     private final String chomeursDirectoryPath = "src/assets/chomeurs/";
     
     // Chemin vers le dossier contenant les items
-    private final String itemsDirectoryPath = "src/assets/items/";
+    private final String itemsDirectoryPath = "src/application/Game/items/";
 
     @FXML
     public void initialize() {
@@ -80,7 +80,7 @@ public class SelectionController {
     // Charger les fichiers dans une ComboBox
     private void load(ComboBox<String> comboBox, String directoryPath) {
         File directory = new File(directoryPath);
-
+        comboBox.getItems().clear();
         if (directory.exists() && directory.isDirectory()) {
             File[] files = directory.listFiles();
 

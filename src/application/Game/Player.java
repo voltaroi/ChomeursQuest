@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.Game.items.Restes;
+
 public class Player {
 	
 	private List<Chomeur> chomeurs;
@@ -108,9 +110,9 @@ public class Player {
 	                            chomeur.clearAttacks();	                            
 	                            break;
 	                        case "item":
-	                        	String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "items", parts[1]).toString();
+	                        	
 	                        	Item newItem = new Restes();
-	                        	newItem.FromFile(path);
+	                        	
 	                        	chomeur.setItem(newItem);
 	                        	break;
 	                        case "attack1":

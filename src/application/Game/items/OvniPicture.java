@@ -1,4 +1,7 @@
-package application.Game;
+package application.Game.items;
+
+import application.Game.Chomeur;
+import application.Game.Item;
 
 public class OvniPicture extends Item {
 
