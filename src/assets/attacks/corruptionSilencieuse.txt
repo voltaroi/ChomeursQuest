@@ -1,4 +1,4 @@
-name=corruptionSilensieuse
+name=corruptionSilencieuse
 isAttackSpe=true
 att=50
 type=politique
