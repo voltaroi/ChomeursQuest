@@ -1,5 +1,5 @@
 name=Mark Sargent
-hp=12
+hp=90
 att=4
 attSpe=6
 def=3

@@ -1,3 +1,0 @@
-name=speArmor
-effect=defSpe
-value=20

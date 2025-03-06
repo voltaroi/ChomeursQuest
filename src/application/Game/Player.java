@@ -13,19 +13,27 @@ public class Player {
 	
 	private List<Chomeur> chomeurs;
 	
+	private String name;
+	
 	private int chomeurActif = 0;
 	
 	
-	public Player() {
+	public Player(String newName) {
+		name = newName;
 		chomeurs = new ArrayList<>();
 		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team" + ".txt").toString();
 		if (getNumberChomeur(path) == 0) {
 			path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "random" + ".txt").toString();}
 		addTeam(path);	
 	}
+	
+	public String getName() {
+		return name;
+	}
 
 	public void updateItem() {
 		Chomeur chomeur = getChomeurActif();
+		System.out.println(chomeur.getName());
 		chomeur.updateItem(chomeur);
 	}
 	

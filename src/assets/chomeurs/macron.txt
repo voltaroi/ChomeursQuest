@@ -1,5 +1,5 @@
 name=Macron
-hp=12
+hp=120
 att=4
 attSpe=6
 def=3

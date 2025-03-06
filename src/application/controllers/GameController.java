@@ -3,7 +3,6 @@ package application.controllers;
 import java.io.File;
 import java.util.List;
 
-import application.Main;
 import application.Game.Attack;
 import application.Game.Chomeur;
 import application.Game.Effect;
@@ -15,7 +14,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -53,8 +51,8 @@ public class GameController {
     @FXML
     private HBox listChomeur;
     
-    private Player player1 = new Player();
-    private Player player2 = new Player();
+    private Player player1 = new Player("Player 1");
+    private Player player2 = new Player("Player 2");
     
     private boolean round = true;
     
@@ -67,6 +65,7 @@ public class GameController {
     	myCanvas.setMouseTransparent(true);
     	chomeur1.setMouseTransparent(true);
     	chomeur2.setMouseTransparent(true);
+    	effect.setMouseTransparent(true);
 
     	//gc.setFill(Color.LIGHTBLUE);
     	
@@ -85,7 +84,9 @@ public class GameController {
     
     public void initPlayer(Player player, VBox chomeurVBox) {
     	initView(player, chomeurVBox);
-    	initAttack(player);
+    	if(player == player1) {
+        	initAttack(player);
+    	}
     }
     
     public void initAttack(Player player) {
@@ -96,6 +97,7 @@ public class GameController {
     		Attack attack = attacks.get(i);
     	    final int numAttack = i;
     		Button button = new Button(attack.getName());
+    		System.out.println(attack.getName());
     		button.setOnAction(event -> { buttonAttack(attack.getName()); });
     		button.setFont(new Font(16));
     		if(numAttack < 3) {
@@ -124,6 +126,12 @@ public class GameController {
     }
     
     public void attackEnemy() {
+        try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Chomeur chomeur = player2.getChomeurActif();
         List<Attack> attacks = chomeur.getAllAttack();
         
@@ -131,11 +139,12 @@ public class GameController {
         Attack attack = attacks.get(randomIndex);
         attack(attack.getName(), player2, player1, chomeur1);
         round = true;
-        player2.updateItem();
+        
+//        player1.updateItem();
+//        player2.updateItem();
     }
     
     public void attack(String attackName, Player player, Player player2 , VBox vbox) {
-    	
     	if(endGame) {
     		return;
     	}
@@ -146,34 +155,34 @@ public class GameController {
 		float damageResult = 0;
 		Chomeur chomeurEnemy = player2.getChomeurActif();
 		
-    	if(player.getChomeurActif().updateEffects()) {
+    	if(chomeur.updateEffects()) {
     		damageResult = attackSpe(damageResult, attack, chomeur, chomeurEnemy);
     		for(int i = 0; i < chomeur.getEffects().size(); i++) {
     			Effect effect = chomeur.getEffects().get(i);
     			
         		if(effect.equals("confusedMe")){
-        			chomeur.modifHp(-(damageResult / 8));
+        			chomeur.modifHp((damageResult / 8));
         		} else if(effect.equals("confusedYou")){
-        			chomeurEnemy.modifHp(-(damageResult / 8));
+        			chomeurEnemy.modifHp((damageResult / 8));
         		} else if(effect.equals("attDef")) {
         			chomeur.modifAtt(effect.getDamage());
         		} else if(effect.equals("def")) {
         			chomeur.modifDef(effect.getDamage());
         		}  else if(effect.equals("defYou")) {
-        			chomeurEnemy.modifDef(-effect.getDamage());
+        			chomeurEnemy.modifDef(effect.getDamage());
         		}
     		}
-    		addMessage("La " + chomeur.getName() + " de " + player + " fait " + damageResult + " avec "+ attackName);
+    		addMessage("La " + chomeur.getName() + " de " + player.getName() + " fait " + damageResult + " avec "+ attackName);
     		attackEffect(chomeurEnemy, attack);
     	}
     	
-		chomeurEnemy = modifHp(chomeurEnemy, damageResult);
+		chomeurEnemy = modifHp(chomeurEnemy, damageResult, player2);
 		
 		initChomeur(chomeurEnemy, vbox);
 		initAttack(this.player1);
 		displayTeam();
         displayEffet();
-		
+
     }
     
     public void attackEffect(Chomeur chomeurEnemy, Attack attack) {
@@ -186,10 +195,11 @@ public class GameController {
     	}
     }
     
-    public Chomeur modifHp(Chomeur chomeurEnemy, float damageResult) {
+    public Chomeur modifHp(Chomeur chomeurEnemy, float damageResult, Player player) {
 		if(chomeurEnemy.modifHp(-damageResult)) {
+			
 			addMessage(chomeurEnemy.getName() + " est KO");
-			List<Chomeur> chomeurs = player2.getChomeurs();
+			List<Chomeur> chomeurs = player.getChomeurs();
 			boolean isFind = false;
 			int lastI = 0;
 			
@@ -205,12 +215,12 @@ public class GameController {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Fin de partie");
 				alert.setHeaderText(null);
-				alert.setContentText(player2 + " a perdu");
+				alert.setContentText(player + " a perdu");
 				alert.showAndWait();
 			} else {
-				System.out.println(lastI);
-				player2.setChomeurActif(lastI);
-				chomeurEnemy = player2.getChomeurActif();
+				player.setChomeurActif(lastI);
+				chomeurEnemy = player.getChomeurActif();
+				System.out.println(chomeurEnemy.getName());
 			}
 		}
 		return chomeurEnemy;
@@ -266,27 +276,25 @@ public class GameController {
                 System.err.println("Erreur : URI vide ou null.");
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Affiche l'erreur complète pour le débogage
+            e.printStackTrace(); 
         }
 
     	ImageView img = new ImageView(image);
-    	// Définir la taille de l'image
-        img.setFitWidth(300);  // Largeur en pixels
-        img.setFitHeight(200); // Hauteur en pixels
 
-        // Optionnel : Préserver le rapport hauteur/largeur (empêche la déformation)
+        img.setFitWidth(300);
+        img.setFitHeight(200);
+
+        //anti déformation
         img.setPreserveRatio(true);
     	chomeurVBox.getChildren().add(img);
     }
     
- // Méthode pour charger l'image par défaut
     private Image getDefaultImage() {
         return new Image(getClass().getResource("/images/background.jpeg").toExternalForm());
     }
-    
-    //méthode ajouter effet d'attaque
+
     private void displayEffet() {
-    	 // Charger l'image
+
         Image image = loadImage("/images/effet.png");
         ImageView imageView = new ImageView(image);
         
@@ -301,7 +309,7 @@ public class GameController {
         pause.play();
     }
     
- // Méthode pour charger une image locale ou depuis le classpath
+
     private Image loadImage(String path) {
         try {
             // 1. Si c'est un chemin absolu sur le système
@@ -350,23 +358,25 @@ public class GameController {
 	   	 listChomeur.getChildren().clear();
 	   	 List<Chomeur> arrayListChomeur = player1.getChomeurs();
 	     for (Chomeur  chomeur : arrayListChomeur) {
-             Button button = new Button(chomeur.getName() + " " + chomeur.getHp() + "/" + chomeur.getHpMax() ); // Crée un bouton avec le nom
+             Button button = new Button(chomeur.getName() + " " + chomeur.getHp() + "/" + chomeur.getHpMax() );
              button.setOnAction(event -> {
              	if(round) {
              		if(player1.getChomeurActif() != chomeur) {
-                		round = false;
-	   	               	player1.setChomeurActif(arrayListChomeur.indexOf(chomeur));
-	   	               	initPlayer(player1, chomeur1);
-	   	               	displayTeam();
-	               		
-	               		attackEnemy();
+             			if(chomeur.getHp() > 0) {
+                    		round = false;
+    	   	               	player1.setChomeurActif(arrayListChomeur.indexOf(chomeur));
+    	   	               	initPlayer(player1, chomeur1);
+    	   	               	initAttack(player1);
+    	   	               	displayTeam();
+    	               		attackEnemy();
+             			}
              		}
             		
             	} else {
             		addMessage("Ce n'est pas ton tour");
             	}
-             }); // Ajouter un gestionnaire d'événements
-             listChomeur.getChildren().add(button); // Ajout du bouton au VBox
+             });
+             listChomeur.getChildren().add(button);
          }
     }
    	 

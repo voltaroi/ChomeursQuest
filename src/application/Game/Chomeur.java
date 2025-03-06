@@ -46,30 +46,6 @@ public class Chomeur {
 	
 	public void setItem(Item newItem) {
 	    item = newItem;
-//	    String effect = item.getEffect();
-//	    float value = item.getValue();
-//
-//	    switch (effect) {
-//	        case "hp":
-//	            hp += value;
-//	            hpMax += value;
-//	            break;
-//	        case "def":
-//	            def += value;
-//	            break;
-//	        case "defSpe":
-//	            defSpe += value;
-//	            break;
-//	        case "att":
-//	            att += value;
-//	            break;
-//	        case "attSpe":
-//	            attSpe += value;
-//	            break;
-//	        case "speed":
-//	            speed += value;
-//	            break;
-//	    }
 	}
 
 	

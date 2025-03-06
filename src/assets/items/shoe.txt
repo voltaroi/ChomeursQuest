@@ -1,3 +1,0 @@
-name=shoe
-effect=speed
-value=20

@@ -1,5 +1,5 @@
 name=Tila Tequila
-hp=12
+hp=85
 att=4
 attSpe=6
 def=3

@@ -1,3 +1,0 @@
-name=speSword
-effect=attSpe
-value=20

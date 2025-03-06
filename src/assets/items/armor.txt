@@ -1,3 +1,0 @@
-name=armor
-effect=def
-value=20
