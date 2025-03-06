@@ -3,6 +3,7 @@ package application.controllers;
 import java.io.File;
 import java.util.List;
 
+import application.Main;
 import application.Game.Attack;
 import application.Game.Chomeur;
 import application.Game.Effect;
@@ -215,13 +216,30 @@ public class GameController {
     public void initChomeur(Chomeur chomeur, VBox chomeurVBox) {
     	chomeurVBox.getChildren().clear();
         drawText(chomeur.getName(), chomeurVBox);
-        System.out.println(chomeur.getUri());
-        Image image = new Image(getClass().getResource("/images/background.jpeg").toExternalForm());
-        if (!chomeur.getUri().isEmpty()) {
-        	File file = new File(chomeur.getUri());
-            String uri = file.toURI().toString();
-        image = new Image(uri);}
-        
+        addImage(chomeur, chomeurVBox);
+        addProgressBar(chomeur.getHp(), chomeur.getHpMax(), chomeurVBox);
+    }
+    
+    public void addImage(Chomeur chomeur, VBox chomeurVBox) {
+    	Image image = getDefaultImage();
+
+        try {
+            // 1. Vérifier si l'URI n'est ni null ni vide
+            if (chomeur.getUri() != null && !chomeur.getUri().isEmpty()) {
+
+                Image loadedImage = loadImage(chomeur.getUri());
+                if (loadedImage != null) {
+                    image = loadedImage;
+                } else {
+                    System.err.println("Erreur : Fichier introuvable -> " + chomeur.getUri());
+                }
+            } else {
+                System.err.println("Erreur : URI vide ou null.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Affiche l'erreur complète pour le débogage
+        }
+
     	ImageView img = new ImageView(image);
     	// Définir la taille de l'image
         img.setFitWidth(300);  // Largeur en pixels
@@ -230,7 +248,32 @@ public class GameController {
         // Optionnel : Préserver le rapport hauteur/largeur (empêche la déformation)
         img.setPreserveRatio(true);
     	chomeurVBox.getChildren().add(img);
-        addProgressBar(chomeur.getHp(), chomeur.getHpMax(), chomeurVBox);
+    }
+    
+ // Méthode pour charger l'image par défaut
+    private Image getDefaultImage() {
+        return new Image(getClass().getResource("/images/background.jpeg").toExternalForm());
+    }
+    
+ // Méthode pour charger une image locale ou depuis le classpath
+    private Image loadImage(String path) {
+        try {
+            // 1. Si c'est un chemin absolu sur le système
+            File file = new File(path);
+            if (file.exists()) {
+                return new Image(file.toURI().toString());
+            }
+
+            // 2. Si c'est une ressource du projet (dans src/main/resources)
+            var resource = getClass().getResource(path);
+            if (resource != null) {
+                return new Image(resource.toExternalForm());
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
+        }
+
+        return null; // Retourne null si aucune image valide n'a été trouvée
     }
     
     public void addMessage(String message) {
