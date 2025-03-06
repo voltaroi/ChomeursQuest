@@ -8,4 +8,4 @@ speed=1
 type1=platiste
 type2=none
 listAttackSpe=malefique5G.txt ovni.txt paranoia.txt preuveYoutube.txt
-uri=/image/Tila Tequila.png
+uri=/images/Tila Tequila.png

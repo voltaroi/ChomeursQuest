@@ -1,22 +1,22 @@
 
-name=macron.txt
-item=OvniPicture.java
-attack1=test1.txt
+name=Tila Tequila.txt
+item=Restes.java
+attack1=malefique5G.txt
 attack2=none
 attack3=none
-attack4=test1.txt
-
-name=Macron1.txt
-item=Restes.java
-attack1=none
-attack2=none
-attack3=test1.txt
 attack4=none
 
-name=Brigitte.txt
-item=OvniPicture.java
-attack1=none
-attack2=test1.txt
+name=Tila Tequila.txt
+item=Restes.java
+attack1=malefique5G.txt
+attack2=none
+attack3=none
+attack4=none
+
+name=Tila Tequila.txt
+item=Restes.java
+attack1=malefique5G.txt
+attack2=none
 attack3=none
 attack4=none
 
