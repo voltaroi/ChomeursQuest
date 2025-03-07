@@ -1,22 +1,43 @@
 
+name=manuel.txt
+item=Restes.java
+attack1=blagueDeTonton.txt
+attack2=blagueDeTonton.txt
+attack3=coupDePoing.txt
+attack4=blagueDeTonton.txt
+
+name=macron.txt
+item=OvniPicture.java
+attack1=coupDePoing.txt
+attack2=corruptionSilencieuse.txt
+attack3=corruptionSilencieuse.txt
+attack4=contradiction.txt
+
+name=alex.txt
+item=OvniPicture.java
+attack1=lancerDeBaguette.txt
+attack2=CoupDeBoule.txt
+attack3=fromageAffine.txt
+attack4=CoupDeBoule.txt
+
+name=macron.txt
+item=OvniPicture.java
+attack1=faussePromesse.txt
+attack2=faussePromesse.txt
+attack3=CoupDeBoule.txt
+attack4=coupDePoing.txt
+
 name=antony.txt
 item=OvniPicture.java
-attack1=crtlC.txt
-attack2=crtlC.txt
+attack1=codeSpaghetti.txt
+attack2=codeSpaghetti.txt
 attack3=crtlC.txt
 attack4=lanceOrdi.txt
 
-name=julien.txt
+name=Mark Sargent.txt
 item=Restes.java
-attack1=lancerDeBaguette.txt
+attack1=coupDePoing.txt
 attack2=coupDePoing.txt
-attack3=fromageAffine.txt
-attack4=fromageAffine.txt
-
-name=macron.txt
-item=Restes.java
-attack1=attack493.txt
-attack2=contradiction.txt
-attack3=faussePromesse.txt
-attack4=attack493.txt
+attack3=CoupDeBoule.txt
+attack4=preuveYoutube.txt
 
