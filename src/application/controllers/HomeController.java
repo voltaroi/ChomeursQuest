@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
-import application.GameInstance;
+import application.GameState;
 
 public class HomeController {
 	
@@ -34,11 +34,11 @@ public class HomeController {
     
     @FXML
     private void handleHost(ActionEvent event) {
-    	GameInstance.startServer();
-		GameInstance.getServer().start();
+    	GameState.startServer();
+		GameState.getServer().start();
 		
-		GameInstance.setIsMulti(true);
-		GameInstance.setIsServer(true);
+		GameState.setIsMulti(true);
+		GameState.setIsServer(true);
 		
         navigateTo(event, "/views/Selection.fxml", "Sélection");
     }
@@ -46,20 +46,20 @@ public class HomeController {
     @FXML
     private void handleJoin(ActionEvent event) {
 
-    	GameInstance.startClient();
-		GameInstance.getClient().start();
+    	GameState.startClient();
+		GameState.getClient().start();
 		
-		GameInstance.setIsMulti(true);
+		GameState.setIsMulti(true);
 		
-		GameInstance.getClient().sendData("ping", 1);
+		GameState.getClient().sendData("ping", 1);
 	    navigateTo(event, "/views/Selection.fxml", "Sélection");
-	    GameInstance.getClient().sendData("join", 0);
+	    GameState.getClient().sendData("join", 0);
     }
     
     @FXML
     private void handleQuit(ActionEvent event) {
-    	if(GameInstance.getIsServer()) {
-    		GameInstance.getServer().stopServer();
+    	if(GameState.getIsServer()) {
+    		GameState.getServer().stopServer();
     	}
         Platform.exit();
     }

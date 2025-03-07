@@ -3,7 +3,7 @@ package application;
 import net.GameClient;
 import net.GameServer;
 
-public class GameInstance {
+public class GameState {
 	
 	private static boolean isMulti = false;
 	private static boolean isServer = false;
