@@ -1,0 +1,11 @@
+name=ronaldo
+hp=110
+att=4
+attSpe=6
+def=3
+defSpe=4
+speed=1
+type1=portugais
+type2=poison
+listAttackSpe=betoniere.txt blagueDeTonton.txt truelleAiguisee.txt murPorteur.txt
+uri=/images/ronaldo.png

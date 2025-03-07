@@ -1,0 +1,11 @@
+name=michel
+hp=110
+att=4
+attSpe=6
+def=3
+defSpe=4
+speed=1
+type1=dev
+type2=poison
+listAttackSpe=chatGPT.txt codeSpaghetti.txt crtlC.txt lanceOrdi.txt
+uri=/images/michelDev.png

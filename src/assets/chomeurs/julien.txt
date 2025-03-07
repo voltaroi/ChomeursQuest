@@ -1,0 +1,11 @@
+name=julien
+hp=110
+att=4
+attSpe=6
+def=3
+defSpe=4
+speed=1
+type1=francais
+type2=poison
+listAttackSpe=franglais.txt fromageAffine.txt lancerDeBaguette.txt manifestation.txt
+uri=/images/julien.jpeg
