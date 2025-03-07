@@ -5,14 +5,15 @@ import application.Game.Item;
 
 public class Restes extends Item {
 
-	public Chomeur actuEffect(Chomeur chomeur) {
+	public void actuEffect(Chomeur chomeur) {
+		float hp = chomeur.getHp();
 		float newHp = (chomeur.getHpMax() / 100) * 2;
-		if(chomeur.getHp() + newHp < chomeur.getHpMax()) {
-			chomeur.setHp(chomeur.getHpMax());
-		} else {
+		if(hp + newHp < chomeur.getHpMax()) {
 			chomeur.modifHp(newHp);
+		} else {
+			chomeur.setHp(chomeur.getHpMax());
 		}
-		return chomeur;
+		System.out.println(chomeur.getHp());
 	}
 
 }

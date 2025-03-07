@@ -249,12 +249,13 @@ public class GameController {
     			}
     		}
     		if(typeEqual) {
-    			damageResult = attack.getAtt() / 2;
+    			damageResult = attack.getAtt();
+    			damageResult = (float) ((chomeur.getAttSpe() / 2) * (damageResult / chomeurEnemy.getDefSpe()) * (0.85 + Math.random() * (1 - 0.85)));
     		} else {
     			damageResult = attack.getAtt();
+    			damageResult =  (float) (chomeur.getAttSpe() * (damageResult / chomeurEnemy.getDefSpe()) * (0.85 + Math.random() * (1 - 0.85)));
     		}
     		
-    		damageResult =  (float) (chomeur.getAttSpe() * (damageResult / chomeurEnemy.getDefSpe()) * (0.85 + Math.random() * (1 - 0.85)));
 		} else {
     		damageResult = attack.getAtt();
     		damageResult =  (float) (chomeur.getAtt() * (damageResult / chomeurEnemy.getDef()) * (0.85 + Math.random() * (1 - 0.85)));

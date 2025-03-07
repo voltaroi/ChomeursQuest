@@ -36,8 +36,7 @@ public class Player {
 
 	public void updateItem() {
 		Chomeur chomeur = getChomeurActif();
-		System.out.println(chomeur.getName());
-		chomeur = chomeur.updateItem(chomeur);
+		chomeur.updateItem();
 	}
 	
 	public void addTeam(String path) {

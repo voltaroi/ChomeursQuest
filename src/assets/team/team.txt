@@ -1,43 +1,22 @@
 
-name=julien.txt
+name=alex.txt
 item=OvniPicture.java
-attack1=franglais.txt
-attack2=manifestation.txt
-attack3=fromageAffine.txt
-attack4=lancerDeBaguette.txt
-
-name=Tila Tequila.txt
-item=OvniPicture.java
-attack1=preuveYoutube.txt
-attack2=paranoia.txt
-attack3=paranoia.txt
-attack4=malefique5G.txt
-
-name=macron.txt
-item=OvniPicture.java
-attack1=attack493.txt
-attack2=attack493.txt
-attack3=corruptionSilencieuse.txt
-attack4=CoupDeBoule.txt
+attack1=fromageAffine.txt
+attack2=CoupDeBoule.txt
+attack3=franglais.txt
+attack4=fromageAffine.txt
 
 name=ronaldo.txt
 item=Restes.java
-attack1=truelleAiguisee.txt
-attack2=coupDePoing.txt
-attack3=CoupDeBoule.txt
+attack1=blagueDeTonton.txt
+attack2=murPorteur.txt
+attack3=murPorteur.txt
 attack4=murPorteur.txt
 
-name=ronaldo.txt
-item=OvniPicture.java
-attack1=truelleAiguisee.txt
-attack2=truelleAiguisee.txt
-attack3=blagueDeTonton.txt
-attack4=truelleAiguisee.txt
-
-name=antony.txt
+name=macron.txt
 item=Restes.java
-attack1=CoupDeBoule.txt
-attack2=codeSpaghetti.txt
-attack3=crtlC.txt
-attack4=codeSpaghetti.txt
+attack1=attack493.txt
+attack2=CoupDeBoule.txt
+attack3=CoupDeBoule.txt
+attack4=corruptionSilencieuse.txt
 

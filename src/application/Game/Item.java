@@ -1,9 +1,5 @@
 package application.Game;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
 public abstract class Item {
 	private String name;
 	private String effect;
@@ -34,5 +30,5 @@ public abstract class Item {
 		return value;
 	}
 	
-    public abstract Chomeur actuEffect(Chomeur chomeur);
+    public abstract void actuEffect(Chomeur chomeur);
 }

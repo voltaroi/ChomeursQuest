@@ -5,13 +5,11 @@ import application.Game.Item;
 
 public class OvniPicture extends Item {
 
-	public Chomeur actuEffect(Chomeur chomeur) {
+	public void actuEffect(Chomeur chomeur) {
 		if(oneAction) {
 			oneAction = false;
 			chomeur.modifDefSpe(6);
 		}
-		
-		return chomeur;
 	}
 
 }
