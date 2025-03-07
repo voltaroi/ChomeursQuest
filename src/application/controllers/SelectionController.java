@@ -9,7 +9,10 @@ import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -43,6 +46,9 @@ public class SelectionController {
     private ComboBox<String> attack4ComboBox;
     @FXML
     private Text description;
+    
+    @FXML
+    private VBox image;
     
     private String team;
     
@@ -170,6 +176,60 @@ public class SelectionController {
         }
         return listAttack;
     }
+    @FXML
+    private void displayPicture() {
+    	image.getChildren().clear();
+    	String chomeur = chomeurComboBox.getValue() != null ? chomeurComboBox.getValue() : "macron.txt";
+    	Image img = loadImage(getURI(chomeursDirectoryPath + chomeur));
+    	ImageView imageView = new ImageView(img);
+
+        imageView.setFitWidth(200);
+        imageView.setFitHeight(150);
+
+        //anti déformation
+        imageView.setPreserveRatio(true);
+        image.getChildren().add(imageView);
+    }
+    private Image loadImage(String path) {
+        try {
+            // 1. Si c'est un chemin absolu sur le système
+            File file = new File(path);
+            if (file.exists()) {
+                return new Image(file.toURI().toString());
+            }
+
+            // 2. Si c'est une ressource du projet (dans src/main/resources)
+            var resource = getClass().getResource(path);
+            if (resource != null) {
+                return new Image(resource.toExternalForm());
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
+        }
+
+        return null;
+    }
+    
+    private String getURI(String filePath) {
+       	String uri = "" ;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("=");
+                if (parts.length == 2) {
+                    switch (parts[0]) {
+	                    case "uri":
+	                    	uri += parts[1];
+	                        break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return uri;
+    }
     
     public static boolean compare(String ligne1, String ligne2) {
         Set<String> motsLigne1 = new HashSet<>(Arrays.asList(ligne1.split(" ")));
@@ -196,6 +256,7 @@ public class SelectionController {
     }
     
     // affiche description
+    @FXML
     private void displayDescription() {
     	String chomeur = chomeurComboBox.getValue(); 
     	String cheminFichier = "src/assets/chomeurs/" + chomeur;
@@ -204,10 +265,10 @@ public class SelectionController {
             String ligne;
             while ((ligne = reader.readLine()) != null) {
             	// Si la ligne contient "name", on la saute
-                if (ligne.contains("name") || ligne.contains("attack")) {
+                if (ligne.contains("name") || ligne.contains("ttack")|| ligne.contains("uri")) {
                 	continue;
                 }
-            	if ( ligne.contains("speed") || ligne.contains("listAttack")) {
+            	if ( ligne.contains("speed")) {
             				descriptionChomeurSelected += System.lineSeparator();
             			}
             	descriptionChomeurSelected += ligne + " ";
@@ -221,6 +282,7 @@ public class SelectionController {
             loadAttack(attack2ComboBox);
             loadAttack(attack3ComboBox);
             loadAttack(attack4ComboBox);
+            displayPicture();
             
         } catch (IOException e) {
             System.err.println("Erreur lors de la lecture du fichier : " + e.getMessage());
