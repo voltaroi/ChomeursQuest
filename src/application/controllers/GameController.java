@@ -3,7 +3,7 @@ package application.controllers;
 import java.io.File;
 import java.util.List;
 
-import application.GameInstance;
+import application.GameState;
 import application.Game.Attack;
 import application.Game.Chomeur;
 import application.Game.Effect;
@@ -63,8 +63,8 @@ public class GameController {
     @FXML
     public void initialize() {
     	
-    	if(GameInstance.getIsMulti()) {
-    		if(GameInstance.getSecondePlayerConnected()) {
+    	if(GameState.getIsMulti()) {
+    		if(GameState.getSecondePlayerConnected()) {
     			System.out.print("seconde player connected");
     		}
     	}
@@ -118,10 +118,10 @@ public class GameController {
     }
 
     public void buttonAttack(String attackName) { 
-    	if(!GameInstance.getIsMulti()) {
-        	if(GameInstance.getRound()) {
+    	if(!GameState.getIsMulti()) {
+        	if(GameState.getRound()) {
         		
-        		GameInstance.setRound(false);
+        		GameState.setRound(false);
         		attack(attackName, player1, player2, chomeur2);		
         		
         		attackEnemy();
@@ -142,7 +142,7 @@ public class GameController {
         int randomIndex = (int) Math.floor(Math.random() * attacks.size());
         Attack attack = attacks.get(randomIndex);
         attack(attack.getName(), player2, player1, chomeur1);
-        GameInstance.setRound(true);
+        GameState.setRound(true);
         
         player1.updateItem();
         player2.updateItem();
@@ -348,7 +348,7 @@ public class GameController {
         Label label = new Label(message);
         info.getChildren().add(label);
     }
-    
+     
     public void drawText(String text, VBox chomeurVBox) {
         Label label = new Label(text);
         label.setFont(new Font(20));
@@ -374,10 +374,10 @@ public class GameController {
 	     for (Chomeur  chomeur : arrayListChomeur) {
              Button button = new Button(chomeur.getName() + " " + (int) chomeur.getHp() + "/" + (int)chomeur.getHpMax() );
              button.setOnAction(event -> {
-             	if(GameInstance.getRound()) {
+             	if(GameState.getRound()) {
              		if(player1.getChomeurActif() != chomeur) {
              			if(chomeur.getHp() > 0) {
-                    		GameInstance.setRound(false);
+                    		GameState.setRound(false);
     	   	               	player1.setChomeurActif(arrayListChomeur.indexOf(chomeur));
     	   	               	initPlayer(player1, chomeur1);
     	   	               	initAttack(player1);
