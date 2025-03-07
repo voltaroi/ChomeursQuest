@@ -1,7 +1,7 @@
 name=coupDePoing
 isAttackSpe=false
-att=30
+att=40
 type=neutre
-effect=
+effect=none
 effectTime=0
 effectDamage=0

@@ -1,6 +1,6 @@
 name=manifestation
 isAttackSpe=true
-att=30
+att=20
 type=francais
 effect=stun
 effectTime=2

@@ -21,10 +21,13 @@ public class Player {
 	public Player(String newName) {
 		name = newName;
 		chomeurs = new ArrayList<>();
+		if(newName == "Player 1") {
 		String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "team" + ".txt").toString();
-		if (getNumberChomeur(path) == 0) {
-			path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "random" + ".txt").toString();}
-		addTeam(path);	
+		addTeam(path);	}
+		if(newName == "Player 2") {
+			String path = Paths.get(System.getProperty("user.dir"), "src", "assets", "team", "cpuTeam" + ".txt").toString();
+			addTeam(path);	}
+		
 	}
 	
 	public String getName() {

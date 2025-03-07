@@ -1,7 +1,7 @@
 name=codeSpaghetti
 isAttackSpe=true
-att=50
+att=0
 type=dev
 effect=confusedYou
 effectTime=2
-effectDamage=0
+effectDamage=35

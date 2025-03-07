@@ -1,22 +1,29 @@
 
+name=alex.txt
+item=Restes.java
+attack1=CoupDeBoule.txt
+attack2=coupDePoing.txt
+attack3=franglais.txt
+attack4=lancerDeBaguette.txt
+
 name=Brigitte.txt
 item=OvniPicture.java
-attack1=attack493.txt
-attack2=none
-attack3=none
-attack4=none
+attack1=contradiction.txt
+attack2=CoupDeBoule.txt
+attack3=corruptionSilencieuse.txt
+attack4=attack493.txt
 
-name=macron.txt
+name=michel.txt
 item=OvniPicture.java
-attack1=none
-attack2=contradiction.txt
-attack3=none
-attack4=none
+attack1=chatGPT.txt
+attack2=CoupDeBoule.txt
+attack3=codeSpaghetti.txt
+attack4=crtlC.txt
 
-name=macron.txt
+name=ronaldo.txt
 item=OvniPicture.java
-attack1=none
-attack2=contradiction.txt
-attack3=none
-attack4=none
+attack1=CoupDeBoule.txt
+attack2=murPorteur.txt
+attack3=betoniere.txt
+attack4=truelleAiguisee.txt
 

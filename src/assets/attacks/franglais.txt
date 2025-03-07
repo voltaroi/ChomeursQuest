@@ -1,7 +1,7 @@
 name=franglais
 isAttackSpe=true
-att=30
+att=0
 type=francais
 effect=confusedYou
 effectTime=2
-effectDamage=0
+effectDamage=36

@@ -1,6 +1,6 @@
 name=lancéOrdi
 isAttackSpe=true
-att=50
+att=80
 type=dev
 effect=none
 effectTime=2

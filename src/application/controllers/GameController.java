@@ -52,6 +52,9 @@ public class GameController {
     @FXML
     private HBox listChomeur;
     
+    @FXML
+    private HBox listChomeurCpu;
+    
     private Player player1 = new Player("Player 1");
     private Player player2 = new Player("Player 2");
     
@@ -81,6 +84,7 @@ public class GameController {
         initPlayer(player1, chomeur1);
         initPlayer(player2, chomeur2);
         displayTeam();
+        displayTeamCpu();
     }
     
     public void initPlayer(Player player, VBox chomeurVBox) {
@@ -174,7 +178,7 @@ public class GameController {
     		        chomeur.modifDef(effect.getDamage());
     		        break;
     		    case "defYou":
-    		        chomeurEnemy.modifDef(effect.getDamage());
+    		         chomeurEnemy.modifDef(effect.getDamage());
     		        break;
     		    default:
     		        System.out.println("Effet inconnu : " + effect);
@@ -191,6 +195,7 @@ public class GameController {
 		initAttack(this.player1);
 		displayTeam();
         displayEffet();
+        displayTeamCpu();
 
     }
     
@@ -367,7 +372,7 @@ public class GameController {
 	   	 listChomeur.getChildren().clear();
 	   	 List<Chomeur> arrayListChomeur = player1.getChomeurs();
 	     for (Chomeur  chomeur : arrayListChomeur) {
-             Button button = new Button(chomeur.getName() + " " + chomeur.getHp() + "/" + chomeur.getHpMax() );
+             Button button = new Button(chomeur.getName() + " " + (int) chomeur.getHp() + "/" + (int)chomeur.getHpMax() );
              button.setOnAction(event -> {
              	if(GameInstance.getRound()) {
              		if(player1.getChomeurActif() != chomeur) {
@@ -387,6 +392,15 @@ public class GameController {
              });
              listChomeur.getChildren().add(button);
          }
-    }
+    }  
+    private void displayTeamCpu() {
+	   	 listChomeurCpu.getChildren().clear();
+	   	 List<Chomeur> arrayListChomeur = player2.getChomeurs();
+	     for (Chomeur  chomeur : arrayListChomeur) {
+            Button button = new Button(chomeur.getName() + " " + (int) chomeur.getHp() + "/" + (int)chomeur.getHpMax() );
+            listChomeurCpu.getChildren().add(button);
+        }
+   }
+    
    	 
 }

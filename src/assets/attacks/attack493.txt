@@ -1,6 +1,6 @@
 name=attack493
 isAttackSpe=true
-att=50
+att=20
 type=politique
 effect=stun
 effectTime=2

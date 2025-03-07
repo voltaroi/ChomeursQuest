@@ -3,5 +3,5 @@ isAttackSpe=true
 att=30
 type=portugais
 effect=none
-effectTime=2
+effectTime=0
 effectDamage=0

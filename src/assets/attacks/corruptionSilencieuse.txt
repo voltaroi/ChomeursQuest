@@ -1,7 +1,7 @@
 name=corruptionSilencieuse
 isAttackSpe=true
-att=50
+att=0
 type=politique
 effect=attDef
 effectTime=2
-effectDamage=2
+effectDamage=30

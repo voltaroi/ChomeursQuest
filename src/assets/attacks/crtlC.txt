@@ -1,7 +1,7 @@
 name=crtlC
 isAttackSpe=true
-att=50
+att=0
 type=dev
 effect=attDef
 effectTime=2
-effectDamage=3
+effectDamage=34

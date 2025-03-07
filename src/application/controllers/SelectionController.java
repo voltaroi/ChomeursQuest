@@ -80,7 +80,7 @@ public class SelectionController {
             loadAttack(attack4ComboBox); 
             load(itemComboBox, itemsDirectoryPath);
         });
-        handleClear(); 
+        handleClear();
     }
 
     // Charger les fichiers dans une ComboBox
@@ -106,7 +106,6 @@ public class SelectionController {
     private void loadAttack(ComboBox<String> comboBox) {
     	comboBox.getItems().clear();
     	String chomeur = chomeurComboBox.getValue() != null ? chomeurComboBox.getValue() : "macron.txt";
-    	String chomeurTypes = getType(chomeursDirectoryPath + chomeur);
         File directory = new File(attacksDirectoryPath);
         if (directory.exists() && directory.isDirectory()) {
             File[] files = directory.listFiles();
@@ -319,7 +318,7 @@ public class SelectionController {
             "attack1=" + attack1 + "\n" +
             "attack2=" + attack2 + "\n" +
             "attack3=" + attack3 + "\n" +
-            "attack4=" + attack4 + "\n");
+            "attack4=" + attack4 + "\n", "team.txt");
             displayTeam();
         }
     }
@@ -352,14 +351,14 @@ public class SelectionController {
          }
     }
     
-    private void addChomeur(String text) {
+    private void addChomeur(String text, String teamName) {
 	    team += text;
     	
 	    // Définir le chemin du dossier cible
 	    String folderPath = "src/assets/team/";
 	    
 	    // Crée un fichier pour enregistrer le texte
-	    File file = new File(folderPath, "team.txt");
+	    File file = new File(folderPath, teamName);
 	
 	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 	        // Sauvegarde le texte dans le fichier
@@ -371,19 +370,86 @@ public class SelectionController {
 	        showAlert("Erreur", "Erreur lors de la sauvegarde du fichier : " + e.getMessage());
 	    }
     }
-    
+    private void clearTeam() {
+    	team = "";
+    	addChomeur("","team.txt");
+    	addChomeur("","cpuTeam.txt");
+    }
     @FXML
     private void handleClear() {
-    	team = "";
-    	addChomeur("");
+    	clearTeam();
     	displayTeam();
     }
-    
+    private String random(String directoryPath) {
+    	File directory = new File(directoryPath);
+
+        // Check if the path is a valid directory
+        if (directory.exists() && directory.isDirectory()) {
+            // Get the list of files (excluding subdirectories)
+            File[] files = directory.listFiles(File::isFile);
+            
+            if (files != null && files.length > 0) {
+                // Select a random file
+                Random random = new Random();
+                File randomFile = files[random.nextInt(files.length)];
+        
+                return randomFile.getName();
+            }
+        }
+        return"";
+    }
     @FXML
-    private void handleRandom(ActionEvent event) {
+    private void handleRandom(ActionEvent event) {            
+    	randomTeam("team.txt");
+    	randomTeam("cpuTeam.txt");
     	navigateTo(event, "/views/Game.fxml", "Game");
     }
+    private void randomTeam(String teamName) {
+    	team = "";
+    	Random random = new Random();
+        int NbRandom = random.nextInt(4) + 3;
+        for(int i= 0;i< NbRandom;i++) {
+           String chomeur = random(chomeursDirectoryPath);
+           String item = random(itemsDirectoryPath);
+           String attack1 = attackRandom(chomeur);
+           String attack2 = attackRandom(chomeur);
+           String attack3 = attackRandom(chomeur);
+           String attack4 = attackRandom(chomeur);
+        
+        	addChomeur("\n"+
+                "name=" + chomeur + "\n" + 
+                "item=" + item + "\n" + 
+                "attack1=" + attack1 + "\n" +
+                "attack2=" + attack2 + "\n" +
+                "attack3=" + attack3 + "\n" +
+                "attack4=" + attack4 + "\n",teamName);
+    	}    	
+    }
+    private String attackRandom(String chomeur) {
+    	List<String> list = new ArrayList<>();
+    File directory = new File(attacksDirectoryPath);
+    if (directory.exists() && directory.isDirectory()) {
+        File[] files = directory.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+            	if (compare(getType(attacksDirectoryPath + file.getName()), "neutre")) {
+            		list.add(file.getName());
+            	}
+                if (file.isFile() && compare(getListAttack(chomeursDirectoryPath + chomeur), file.getName())) {
+                		list.add(file.getName());
+                                     
+                }
+            }
+        }
+    }
+    return getRandomElement(list);
+    }
     
+    public static <T> T getRandomElement(List<T> list) {
+        Random random = new Random();
+        return list.get(random.nextInt(list.size()));
+    }
     @FXML
     private void handleReady(ActionEvent event) {
     	if(numberChomeurTeam < 3) {

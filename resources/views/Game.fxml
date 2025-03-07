@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.GameController" alignment="CENTER" spacing="10">
+	<HBox fx:id="listChomeurCpu" alignment="BOTTOM_RIGHT" prefHeight="40" />
 	<HBox>
 		<StackPane fx:id="rootPane">
 		    <Canvas fx:id="myCanvas" width="800" height="450"/>

@@ -1,6 +1,6 @@
 name=lancerDeBaguette
 isAttackSpe=true
-att=30
+att=46
 type=francais
 effect=none
 effectTime=2
