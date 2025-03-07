@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Chomeur {
 	
@@ -40,8 +41,8 @@ public class Chomeur {
 		return uri;
 	}
 	
-	public void updateItem() {
-		item.actuEffect(this);
+	public String updateItem() {
+		return item.actuEffect(this);
 	}
 	
 	public void setItem(Item newItem) {
@@ -84,7 +85,9 @@ public class Chomeur {
 				modifHp(-effects.get(i).getDamage());
 				System.out.println(effects.get(i).getName());
 				if(effects.get(i).getName().equals("stun")) {
-					canPlay = false;
+					if (Math.random() < 0.5) {
+						canPlay = false;
+					}
 				} else if(effects.get(i).getName().equals("poison")) {
 					modifHp(-effects.get(i).getDamage());
 				}

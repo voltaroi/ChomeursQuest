@@ -15,6 +15,17 @@ public class GameState {
 	
 	private static boolean round = true;
 	
+	
+	private static int numRound = 1;
+	
+	public static void addRound() {
+		numRound += 1;
+	}
+	
+	public static int getNumRound() {
+		return numRound;
+	}
+	
 	public static void setRound(boolean newRound) {
 		round = newRound;
 	}

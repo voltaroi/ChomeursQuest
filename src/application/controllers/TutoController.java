@@ -61,8 +61,8 @@ public class TutoController {
         
      // Texte avec des sauts de ligne
         String text2 = "name=test" + System.lineSeparator() +
-                      "isAttackSpe = false" + System.lineSeparator() +
-                      "att= 50" + System.lineSeparator() +
+                      "isAttackSpe=false" + System.lineSeparator() +
+                      "att=50" + System.lineSeparator() +
                       "type=poison" + System.lineSeparator() +
                       "effect=poison" + System.lineSeparator() +
                       "effectTime=2" + System.lineSeparator() +

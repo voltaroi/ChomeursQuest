@@ -30,5 +30,5 @@ public abstract class Item {
 		return value;
 	}
 	
-    public abstract void actuEffect(Chomeur chomeur);
+    public abstract String actuEffect(Chomeur chomeur);
 }

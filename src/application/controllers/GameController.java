@@ -85,6 +85,8 @@ public class GameController {
         initPlayer(player2, chomeur2);
         displayTeam();
         displayTeamCpu();
+        
+        addMessage("Round: " + GameState.getNumRound());
     }
     
     public void initPlayer(Player player, VBox chomeurVBox) {
@@ -144,8 +146,11 @@ public class GameController {
         attack(attack.getName(), player2, player1, chomeur1);
         GameState.setRound(true);
         
-        player1.updateItem();
-        player2.updateItem();
+        addMessage(player1.updateItem());
+        addMessage(player2.updateItem());
+        
+        GameState.addRound();
+        addMessage("Round: " + GameState.getNumRound());
     }
     
     public void attack(String attackName, Player player, Player player2 , VBox vbox) {
@@ -187,6 +192,8 @@ public class GameController {
     		}
     		addMessage("La " + chomeur.getName() + " de " + player.getName() + " fait " + damageResult + " avec "+ attackName);
     		attackEffect(chomeurEnemy, attack);
+    	} else {
+    		addMessage(chomeur.getName() + " est étourdi");
     	}
     	
 		chomeurEnemy = modifHp(chomeurEnemy, damageResult, player2);
@@ -229,7 +236,7 @@ public class GameController {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Fin de partie");
 				alert.setHeaderText(null);
-				alert.setContentText(player + " a perdu");
+				alert.setContentText(player.getName() + " a perdu");
 				alert.showAndWait();
 			} else {
 				player.setChomeurActif(lastI);

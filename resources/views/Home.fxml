@@ -19,7 +19,7 @@
             <Button text="Host" onAction="#handleHost"/>
             <Button text="Join" onAction="#handleJoin"/>
             <Button text="Solo" onAction="#handlePlay"/>
-            <Button text="tuto" onAction="#handleTuto"/>
+            <Button text="Create" onAction="#handleTuto"/>
             <Button text="Options" onAction="#handleOption"/>
             <Button text="Quit" onAction="#handleQuit"/>
         </VBox>

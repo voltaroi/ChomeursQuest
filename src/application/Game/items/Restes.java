@@ -5,7 +5,7 @@ import application.Game.Item;
 
 public class Restes extends Item {
 
-	public void actuEffect(Chomeur chomeur) {
+	public String actuEffect(Chomeur chomeur) {
 		float hp = chomeur.getHp();
 		float newHp = (chomeur.getHpMax() / 100) * 2;
 		if(hp + newHp < chomeur.getHpMax()) {
@@ -14,6 +14,7 @@ public class Restes extends Item {
 			chomeur.setHp(chomeur.getHpMax());
 		}
 		System.out.println(chomeur.getHp());
+		return chomeur.getName() + " a regagner " + newHp;
 	}
 
 }
