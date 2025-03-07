@@ -6,6 +6,6 @@ def=3
 defSpe=4
 speed=1
 type1=francais
-type2=poison
+type2=platiste
 listAttackSpe=franglais.txt fromageAffine.txt lancerDeBaguette.txt manifestation.txt
 uri=/images/julien.jpeg

@@ -6,6 +6,6 @@ def=3
 defSpe=4
 speed=1
 type1=dev
-type2=poison
+type2=none
 listAttackSpe=chatGPT.txt codeSpaghetti.txt crtlC.txt lanceOrdi.txt
 uri=/images/antonyDev.png

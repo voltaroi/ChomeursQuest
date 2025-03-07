@@ -12,7 +12,13 @@
 	  fx:controller="application.controllers.SelectionController"
       alignment="CENTER" spacing="20">
     <HBox>
-   
+      <VBox>
+	    <Label text="Chomeurs :" />
+	    <ComboBox fx:id="chomeurComboBox" prefWidth="300"/>
+	    <!-- Description -->
+	    <Text fx:id="description" text="description : "/>
+	    <VBox fx:id="image"/>
+    </VBox>
     <VBox>
 	    <Label text="Item :"/>
 	    <ComboBox fx:id="itemComboBox" prefWidth="300"/>
@@ -27,13 +33,7 @@
 	
 	    <ComboBox fx:id="attack4ComboBox" prefWidth="300"/>
     </VBox>
-     <VBox>
-	    <Label text="Chomeurs :" />
-	    <ComboBox fx:id="chomeurComboBox" prefWidth="300"/>
-	    <!-- Description -->
-	    <Text fx:id="description" text="description : "/>
-	    <VBox fx:id="image"/>
-    </VBox>
+  
     </HBox>
     <HBox>
 	    <Button text="+ add chomeur" onAction="#handleAdd"/>

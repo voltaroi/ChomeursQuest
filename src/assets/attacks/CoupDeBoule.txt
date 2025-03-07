@@ -1,0 +1,7 @@
+name=coupDeBoule
+isAttackSpe=false
+att=40
+type=neutre
+effect=
+effectTime=0
+effectDamage=0
