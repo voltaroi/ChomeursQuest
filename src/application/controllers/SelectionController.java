@@ -459,6 +459,7 @@ public class SelectionController {
    		 showAlert("Erreur", "trop de chomeurs");
      	}
     	if(numberChomeurTeam >= 3 && numberChomeurTeam <= 6) { 
+    		randomTeam("cpuTeam.txt");
     		navigateTo(event, "/views/Game.fxml", "Game");
     	}
     }

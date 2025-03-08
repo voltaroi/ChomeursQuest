@@ -1,43 +1,22 @@
 
 name=Brigitte.txt
-item=Restes.java
-attack1=contradiction.txt
-attack2=coupDePoing.txt
-attack3=coupDePoing.txt
-attack4=attack493.txt
-
-name=macron.txt
-item=Restes.java
-attack1=CoupDeBoule.txt
-attack2=attack493.txt
-attack3=corruptionSilencieuse.txt
+item=OvniPicture.java
+attack1=none
+attack2=contradiction.txt
+attack3=none
 attack4=CoupDeBoule.txt
 
-name=antony.txt
-item=OvniPicture.java
-attack1=crtlC.txt
-attack2=chatGPT.txt
-attack3=coupDePoing.txt
-attack4=crtlC.txt
+name=manuel.txt
+item=Restes.java
+attack1=none
+attack2=blagueDeTonton.txt
+attack3=none
+attack4=coupDePoing.txt
 
 name=julien.txt
 item=OvniPicture.java
-attack1=CoupDeBoule.txt
-attack2=franglais.txt
-attack3=coupDePoing.txt
-attack4=CoupDeBoule.txt
-
-name=ronaldo.txt
-item=Restes.java
-attack1=CoupDeBoule.txt
-attack2=CoupDeBoule.txt
-attack3=murPorteur.txt
-attack4=murPorteur.txt
-
-name=ronaldo.txt
-item=OvniPicture.java
-attack1=betoniere.txt
-attack2=coupDePoing.txt
-attack3=murPorteur.txt
-attack4=blagueDeTonton.txt
+attack1=none
+attack2=none
+attack3=CoupDeBoule.txt
+attack4=fromageAffine.txt
 
